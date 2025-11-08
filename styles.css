@@ -24,7 +24,24 @@ nav a{margin-left:16px;color:var(--text);opacity:.9}
   border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text);
   font-weight:600;transition:all .25s ease-in-out}
 .cta-secondary:hover{background:rgba(255,255,255,.08)}
-section{max-width:1000px;margin:60px auto;padding:0 20px}
+section{max-width:1100px;margin:60px auto;padding:0 20px}
 .highlight{background:var(--card);padding:20px;border-radius:12px;border:1px solid var(--border)}
 footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid var(--border)}
 .cta-group{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:24px}
+/* Extras for program page */
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:1.2fr 1fr}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(125,211,252,.15);color:var(--accent);font-weight:600;font-size:.9rem}
+.muted{color:var(--muted)}
+.center{text-align:center}
+.small{font-size:.92rem}
+hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
+@media (max-width:900px){
+  .grid-2{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .grid-3{grid-template-columns:1fr}
+}
