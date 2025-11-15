@@ -39,6 +39,31 @@ footer{text-align:center;padding:24px;color:var(--muted);border-top:1px solid va
 .small{font-size:.92rem}
 hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
 @media (max-width:900px){
+  /* Stack header content instead of cramming into one row */
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
+
+  .logo img{
+    height: 48px;
+  }
+
+  /* Make nav a flexible, wrapping row under the logo */
+  nav{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin-top: 10px;
+  }
+
+  nav a{
+    margin-left: 0;
+    font-size: 0.9rem;
+  }
+
+  /* Existing grid behavior */
   .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr 1fr}
 }
