@@ -8,9 +8,18 @@ body{margin:0;background:var(--bg);color:var(--text);
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
-header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;
-  border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,15,20,.8);
-  backdrop-filter:blur(6px);z-index:10}
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(11,15,20,.8);
+  backdrop-filter: blur(6px);
+  z-index: 1000;   /* keep header above all page content */
+}
 .logo img{height:60px;width:auto;display:block}
 
 .hero{padding:80px 20px;text-align:center}
