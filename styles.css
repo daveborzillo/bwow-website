@@ -70,3 +70,57 @@ hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
 @media (max-width:560px){
   .grid-3{grid-template-columns:1fr}
 }
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
+.main-nav a,
+.main-nav .nav-link {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown .nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  padding: 0.5rem 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu a.view-all {
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
