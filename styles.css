@@ -124,3 +124,49 @@ hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
 .nav-dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  padding: 0.5rem 0;
+  background: #ffffff;             /* White background so it stands out */
+  border: 1px solid #e5e5e5;       /* Light border */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12); /* Nice shadow */
+  z-index: 9999;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #333;                     /* Dark gray text */
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #333;                     /* Dark gray text */
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dropdown-menu a.view-all {
+  border-top: 1px solid #eee;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.main-nav a,
+.main-nav .nav-link {
+  color: white;
+}
