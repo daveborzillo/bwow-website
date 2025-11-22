@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Me | Better Ways of Working</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <style>
+    /* Page-specific layout tweaks for About page */
+
+    .about-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .about-hero-title {
+      margin-bottom: 0.5rem;
+    }
+
+    .about-subtitle {
+      margin: 0 0 2rem;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .about-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-photo {
+      flex: 0 0 260px;
+      max-width: 320px;
+      align-self: center;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .about-content h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1rem;
+    }
+
+    .about-content ul {
+      padding-left: 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-content li {
+      margin-bottom: 0.4rem;
+    }
+
+    .accent {
+      color: #2457ff;
+      font-weight: 600;
+    }
+
+    @media (min-width: 800px) {
+      .about-layout {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .about-photo {
+        align-self: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">
+    <img src="logo-bwow.png" alt="Better Ways of Working logo" />
+  </a>
+  <nav class="main-nav">
+    <a href="index.html" class="nav-logo">Home</a>
+
+    <div class="nav-dropdown">
+      <button class="nav-link">Programs ▾</button>
+      <div class="dropdown-menu">
+        <a href="career-accelerator.html">The Better Career Cohort</a>
+        <a href="registered-scrum-master.html">Registered Scrum Master</a>
+        <!-- Future programs -->
+        <!-- <a href="better-teams.html">Better Teams</a> -->
+        <!-- <a href="leadership-cohort.html">Leadership Cohort</a> -->
+        <a href="programs.html" class="view-all">View all programs →</a>
+      </div>
+    </div>
+
+    <a href="about.html" class="nav-link">About</a>
+
+    <a href="events.html" class="nav-link">Events</a>
+
+    <div class="nav-dropdown">
+      <button class="nav-link">Resources ▾</button>
+      <div class="dropdown-menu">
+        <a href="https://bwow.substack.com" target="_blank">Newsletter</a>
+        <a href="resources.html#youtube">YouTube</a>
+        <a href="resources.html#podcast">Podcast</a>
+        <a href="resources.html#guides">Guides & Downloads</a>
+        <a href="resources.html" class="view-all">All resources →</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="about-wrapper">
+    <h1 class="about-hero-title">About Me</h1>
+    <p class="about-subtitle">
+      I'm <span class="accent">Dave Borzillo</span>, founder of Better Ways of Working (BWOW).
+    </p>
+
+    <div class="about-layout">
+      <aside class="about-photo">
+        <!-- Your headshot; make sure this file exists in the same folder -->
+        <img
+          src="BorzilloHeadshot.jpg"
+          alt="Portrait of Dave Borzillo, founder of Better Ways of Working"
+        />
+      </aside>
+
+      <section class="about-content">
+        <p>
+          Welcome! I'm Dave Borzillo, founder of Better Ways of Working (BWOW).
+          I help leaders, teams, and organizations discover practical, modern
+          approaches to collaboration, communication, and getting meaningful
+          work done.
+        </p>
+
+        <p>
+          For more than a decade, I’ve coached executives, guided complex
+          transformations, taught at the BU Agile Innovation Lab, and led teams
+          recognized as internal disruptors. I’ve done this work inside Fortune 500
+          companies, helping leaders and teams adopt better ways of working in some
+          of the most complex environments in industry. My work blends Agile, Lean,
+          facilitation, leadership development, and systems thinking into clear,
+          actionable methods that help people move from frustration to momentum.
+        </p>
+
+        <h2>What I Do</h2>
+        <ul>
+          <li>Coach leaders and teams to collaborate more effectively</li>
+          <li>Teach frameworks like Liberating Structures, Visual Collaboration, and Scrum</li>
+          <li>Run cohort-based programs like the Better Career Cohort</li>
+          <li>Facilitate alignment, strategic clarity, and forward progress</li>
+          <li>
+            Write and speak about modern ways of working, including my book
+            <em>Who Killed Agile?</em>
+          </li>
+        </ul>
+
+        <h2>My Mission</h2>
+        <p>
+          My mission is to help people who genuinely care about doing great work
+          unlock their potential by removing the unnecessary friction that holds
+          organizations back. I believe work should feel clearer, more connected,
+          and more human.
+        </p>
+
+        <h2>My Approach</h2>
+        <p>I focus on:</p>
+        <ul>
+          <li><strong>Practicality over theory</strong> — everything I teach works in real environments</li>
+          <li><strong>Simplicity</strong> — clarity creates confidence</li>
+          <li><strong>Psychological safety and openness</strong> — where real collaboration can happen</li>
+          <li><strong>Flow</strong> — reducing delays, confusion, and stalled decisions</li>
+          <li><strong>Empowering others</strong> — so progress continues long after I'm gone</li>
+        </ul>
+
+        <h2>Navigating the Future with AI</h2>
+        <p>
+          Artificial intelligence isn’t just a trend—it's a new layer of how
+          work gets done. And for me, AI isn’t new. In the late 90s, I worked on
+          knowledge-based systems (an early form of AI that represented the state
+          of the art at the time) and helped implement those systems across several
+          aerospace companies. Even then, the goal was the same as it is now:
+          capture expertise, improve decision-making, and make complex work easier.
+        </p>
+        <p>
+          Today’s AI is exponentially more capable, and I believe leaders and
+          teams need to learn how to work <em>with</em> it, not fear it or ignore
+          it. Used well, AI can reduce friction, improve clarity, accelerate
+          decisions, and free people to focus on meaningful, human-centered work.
+          A big part of my mission now is helping people integrate AI into their
+          day-to-day flow in practical, trustworthy ways.
+        </p>
+
+        <h2>Why I Started Better Ways of Working</h2>
+        <p>
+          After years inside organizations where people were overwhelmed by
+          frameworks, meetings, and misalignment, I built BWOW to give leaders
+          and teams something better: practical tools, powerful facilitation
+          methods, and a community that feels energizing instead of exhausting.
+        </p>
+
+        <h2>A Bit of My Story</h2>
+        <p>
+          My career began in environments where smart people struggled not because
+          they lacked skill, but because their ways of working held them back. I
+          became obsessed with solving that—first with tools and systems, and now
+          by improving how people work together. Now, through coaching, training,
+          writing, and programs, I help others remove that friction and unlock the
+          impact they’re capable of.
+        </p>
+
+        <p>
+          If you're someone who cares about doing great work and wants to discover
+          better ways to lead, collaborate, and innovate—you’re in the right place.
+        </p>
+
+        <h2>BWOW Is Bigger Than Me</h2>
+        <p>
+          Better Ways of Working isn’t just my perspective—it’s a growing
+          network of like-minded coaches, facilitators, and practitioners who
+          bring their own expertise and lived experience. I actively partner
+          with other leaders who specialize in areas like organizational design,
+          leadership development, disruption strategy, and team dynamics.
+          Together, we create richer programs, stronger support systems, and more
+          impactful learning experiences for the people we serve.
+        </p>
+
+        <p>
+          If you’re someone who cares about doing meaningful work, wants to
+          improve how you and your teams collaborate, and believes there
+          <em>has</em> to be a better way—you’re in the right place.
+        </p>
+      </section>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Better Ways of Working · <a href="https://bwow.substack.com">Substack</a></p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
