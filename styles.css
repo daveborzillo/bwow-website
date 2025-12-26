@@ -222,3 +222,28 @@ hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
   padding-bottom: 3rem;
 }
 
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.insight-card {
+  background: rgba(255,255,255,0.05);
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.insight-card i {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 900px) {
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
