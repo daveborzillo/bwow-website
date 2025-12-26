@@ -215,3 +215,10 @@ hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
   width: auto;
   display: block;
 }
+
+/* Insights page spacing override */
+.hero {
+  padding-top: 4rem;
+  padding-bottom: 3rem;
+}
+
