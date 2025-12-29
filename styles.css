@@ -251,3 +251,50 @@ hr.div{border:0;border-top:1px solid var(--border);margin:28px 0}
     grid-template-columns: 1fr;
   }
 }
+
+/* Container to center the cards on the page */
+.card-grid-centered {
+  display: flex;
+  justify-content: center; /* Centers cards horizontally */
+  align-items: stretch;     /* Makes cards the same height */
+  gap: 2rem;                /* Space between cards */
+  flex-wrap: wrap;          /* Allows stacking on mobile */
+  padding: 40px 20px;
+}
+
+/* Individual Card Styling */
+.card {
+  background-color: #111821; /* Dark navy from your image */
+  border: 1px solid #1d2936;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes button to the bottom */
+  color: white;
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  color: #94a3b8; /* Muted text color */
+  line-height: 1.6;
+}
+
+/* Button Styling based on your image */
+.cta-button {
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  color: #000;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 2rem;
+  display: inline-block;
+  width: fit-content;
+}
