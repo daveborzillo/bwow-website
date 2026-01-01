@@ -5,31 +5,233 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Better Ways of Working</title>
   <meta name="description" content="Better Ways of Working helps leaders and teams create clarity, collaboration, and momentum—so they deliver better outcomes without burnout or bureaucracy." />
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Better Ways of Working Stylesheet */
+    :root {
+      --bg: #0b0f14;
+      --surface: #111820;
+      --card: #151e28;
+      --text: #e8eef5;
+      --muted: #a8b3c2;
+      --accent: #7dd3fc;
+      --border: #243041;
+      --brand-gradient: linear-gradient(135deg, #60a5fa, #7dd3fc);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; text-decoration: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Navigation --- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 15, 20, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .logo img { height: 60px; width: auto; display: block; }
+
+    .logo-text {
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-left: 2px;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .cta-nav {
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: var(--brand-gradient);
+      color: #06101a !important;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 100px 20px;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(125, 211, 252, 0.05) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      max-width: 15ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      max-width: 60ch;
+      margin: 0 auto 30px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* --- Sections --- */
+    section { padding: 80px 0; }
+
+    h2 { font-size: 2.5rem; margin-bottom: 20px; text-align: center; }
+
+    .stakes-section { text-align: center; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .stakes-section p { max-width: 70ch; margin: 0 auto; font-size: 1.15rem; color: var(--muted); }
+
+    /* --- Blueprint Spotlight --- */
+    .blueprint-spotlight {
+      background: linear-gradient(rgba(11, 15, 20, 0.9), rgba(11, 15, 20, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000');
+      background-size: cover;
+      background-position: center;
+      border-radius: 24px;
+      padding: 60px;
+      margin: 20px auto;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .blueprint-content { flex: 1; }
+    .blueprint-content h2 { text-align: left; margin-top: 0; }
+    .blueprint-tag { 
+      background: rgba(125, 211, 252, 0.1); 
+      color: var(--accent); 
+      padding: 4px 12px; 
+      border-radius: 6px; 
+      font-weight: 600; 
+      font-size: 0.85rem; 
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    /* --- Transformation (StoryBrand: Success vs Failure) --- */
+    .transformation-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .transformation-box {
+      padding: 40px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+    .box-failure { background: rgba(239, 68, 68, 0.05); border-color: rgba(239, 68, 68, 0.2); }
+    .box-success { background: rgba(125, 211, 252, 0.05); border-color: var(--accent); }
+    .transformation-box h3 { margin-top: 0; color: var(--text); }
+    .transformation-box ul { padding-left: 20px; color: var(--muted); }
+    .transformation-box li { margin-bottom: 10px; }
+
+    /* --- Cards (Now at Bottom) --- */
+    .card-section { background: var(--surface); border-top: 1px solid var(--border); }
+    .card-grid-centered { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; max-width: 450px; flex: 1 1 400px; display: flex; flex-direction: column; transition: transform 0.3s ease; }
+    .card:hover { transform: translateY(-5px); }
+    .card h3 { font-size: 1.75rem; margin-top: 0; }
+    .card p { color: var(--muted); margin-bottom: 30px; flex-grow: 1; }
+
+    /* --- Buttons --- */
+    .cta-button, .cta-large { display: inline-block; padding: 14px 28px; border-radius: 10px; background: var(--brand-gradient); color: #06101a; font-weight: 700; text-align: center; width: fit-content; }
+    .cta-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text); border: 1px solid var(--border); padding: 14px 28px; border-radius: 10px; font-weight: 600; }
+    .cta-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--accent); }
+
+    /* --- Plan Steps --- */
+    .solution-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+    .step { text-align: center; padding: 30px; background: rgba(255,255,255,0.02); border-radius: 12px; border: 1px solid var(--border); }
+    .step-number { width: 40px; height: 40px; background: var(--accent); color: #06101a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; margin: 0 auto 20px; }
+
+    footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+    @media (max-width: 900px) {
+      header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+      .solution-steps, .transformation-grid { grid-template-columns: 1fr; }
+      .hero { padding: 60px 20px; }
+      h2 { font-size: 2rem; }
+      .blueprint-spotlight { flex-direction: column; text-align: center; padding: 40px 20px; }
+      .blueprint-content h2 { text-align: center; }
+    }
+  </style>
 </head>
 
 <body>
 
   <header>
     <a class="logo" href="index.html">
-      <img src="logo-bwow.png" alt="Better Ways of Working logo" />
+      <img src="logo-bwow.png" alt="Better Ways of Working" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span style="display:none">Better <span class="logo-text">Ways of Working</span></span>
     </a>
     <nav class="main-nav">
-      <a href="index.html" class="nav-logo">Home</a>
+      <a href="index.html" class="nav-link">Home</a>
       <a href="about.html" class="nav-link">About</a>
-      <!--<a href="events.html" class="nav-link">Events</a>-->
+      <a href="https://bwow.substack.com/p/the-agile-team-flow-and-ai-readiness" class="nav-link">Free Blueprint</a>
       <a href="resources.html" class="nav-link">Insights</a>
       <a href="https://courses.betterwaysofworking.com" class="cta-nav">Courses</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="container hero-content">
+    <div class="container">
       <h1>Stop the Burnout. Start Delivering Outcomes.</h1>
       <p class="hero-subtitle">
         Most teams are busy, but few are effective. We help you cut through the bureaucracy to find a better way of working.
       </p>
-      <a href="https://courses.betterwaysofworking.com" class="cta-main">Explore the Courses</a>
+      <div class="hero-ctas">
+        <a href="https://courses.betterwaysofworking.com" class="cta-large">Explore the Courses</a>
+        <a href="https://bwow.substack.com/p/the-agile-team-flow-and-ai-readiness" class="cta-secondary">Get the Free Blueprint</a>
+      </div>
     </div>
   </section>
 
@@ -40,25 +242,16 @@
     </div>
   </section>
 
-  <section class="card-section">
-    <div class="container card-grid-centered">
-
-      <div class="card">
-        <div class="card-content">
-          <h3>The BWOW Courses</h3>
-          <p>Master the fundamentals of shared clarity, intentional collaboration, and momentum with our practitioner-led training.</p>
+  <section class="blueprint-section">
+    <div class="container">
+      <div class="blueprint-spotlight">
+        <div class="blueprint-content">
+          <span class="blueprint-tag">Free Resource</span>
+          <h2>The Agile Team Flow & AI Readiness Blueprint</h2>
+          <p>Download our practitioner-led guide to fixing team friction and preparing your delivery workflows for the AI era.</p>
+          <a href="https://bwow.substack.com/p/the-agile-team-flow-and-ai-readiness" class="cta-button">Download the Blueprint</a>
         </div>
-        <a href="https://courses.betterwaysofworking.com" class="cta-button">Start Learning Now</a>
       </div>
-
-      <div class="card">
-        <div class="card-content">
-          <h3>Free Insights</h3>
-          <p>Short, practical tactics on leadership and delivery shared across our platforms.</p>
-        </div>
-        <a href="resources.html" class="cta-button">Read the Blog</a>
-      </div>
-
     </div>
   </section>
 
@@ -85,17 +278,56 @@
     </div>
   </section>
 
-  <section class="final-cta">
+  <section class="success-stakes">
     <div class="container">
-      <h2>Ready to transform how your team works?</h2>
-      <p>Join the leaders who are delivering more by doing less of the wrong things.</p>
-      <a href="https://courses.betterwaysofworking.com" class="cta-large">Get Started with Courses</a>
+      <h2>The Transformation</h2>
+      <div class="transformation-grid">
+        <div class="transformation-box box-failure">
+          <h3>The Cost of Inaction</h3>
+          <ul>
+            <li>High burnout and talent turnover</li>
+            <li>Stalled decision-making and endless meetings</li>
+            <li>Outdated workflows that aren't ready for AI</li>
+            <li>Delivering features, but not actual value</li>
+          </ul>
+        </div>
+        <div class="transformation-box box-success">
+          <h3>The BWOW Way</h3>
+          <ul>
+            <li>High-performing teams with clear ownership</li>
+            <li>Rapid delivery cycles and reduced friction</li>
+            <li>AI-ready infrastructure and workflows</li>
+            <li>Consistent, measurable business outcomes</li>
+          </ul>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 60px;">
+        <a href="https://courses.betterwaysofworking.com" class="cta-large">Start the Transformation Today</a>
+      </div>
     </div>
   </section>
 
-  <footer class="site-footer">
+  <section class="card-section">
     <div class="container">
-      <p>&copy; Better Ways of Working</p>
+      <h2 style="margin-bottom: 40px;">Continue Your Journey</h2>
+      <div class="card-grid-centered">
+        <div class="card">
+          <h3>The BWOW Courses</h3>
+          <p>Master the fundamentals of shared clarity, intentional collaboration, and momentum with our practitioner-led training.</p>
+          <a href="https://courses.betterwaysofworking.com" class="cta-button">Start Learning Now</a>
+        </div>
+        <div class="card">
+          <h3>Free Insights</h3>
+          <p>Short, practical tactics on leadership and delivery shared across our platforms to help you improve immediately.</p>
+          <a href="resources.html" class="cta-button">Read the Blog</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Better Ways of Working. All rights reserved.</p>
     </div>
   </footer>
 
