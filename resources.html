@@ -3,115 +3,282 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resources | Better Ways of Working</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <title>Insights | Better Ways of Working</title>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   />
+  <style>
+    /* Better Ways of Working Stylesheet - Unified Aesthetic */
+    :root {
+      --bg: #0b0f14;
+      --surface: #111820;
+      --card: #151e28;
+      --text: #e8eef5;
+      --muted: #a8b3c2;
+      --accent: #7dd3fc;
+      --border: #243041;
+      --brand-gradient: linear-gradient(135deg, #60a5fa, #7dd3fc);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.8; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* --- Navigation --- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 15, 20, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .logo img { height: 60px; width: auto; display: block; }
+
+    .logo-text {
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-left: 2px;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .cta-nav {
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: var(--brand-gradient);
+      color: #06101a !important;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* --- Hero Section --- */
+    .hero {
+      padding: 80px 0 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* --- Insights Grid --- */
+    .insights-section {
+      padding: 40px 0 80px;
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .insight-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 40px 30px;
+      border-radius: 16px;
+      text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .insight-card i {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      background: var(--brand-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .insight-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .insight-card p {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .cta-card {
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: rgba(125, 211, 252, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .cta-card:hover {
+      background: var(--brand-gradient);
+      color: #06101a;
+      opacity: 1;
+    }
+
+    /* --- Final CTA (Blueprint) --- */
+    .about-cta {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 10px;
+      background: var(--brand-gradient);
+      color: #06101a;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+
+    @media (max-width: 900px) {
+      header { padding: 15px 20px; flex-direction: column; gap: 15px; }
+      .insights-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<header>
+  <header>
     <a class="logo" href="index.html">
-      <img src="logo-bwow.png" alt="Better Ways of Working logo" />
+      <img src="logo-bwow.png" alt="Better Ways of Working" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+      <span style="display:none">Better <span class="logo-text">Ways of Working</span></span>
     </a>
-      <nav class="main-nav">
-        <a href="index.html" class="nav-logo">Home</a>
-        <!--<a href="learn.html" class="nav-link">Learn</a>
-        <a href="grow.html" class="nav-link">Grow</a>-->
-        <a href="about.html" class="nav-link">About</a>
-        <!--<a href="events.html" class="nav-link">Events</a>-->
-        <a href="resources.html" class="nav-link">Insights</a>
-        <a href="https://courses.betterwaysofworking.com" class="cta-nav">Courses</a>
-      </nav>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://bwow.substack.com/p/the-agile-team-flow-and-ai-readiness" class="nav-link">Free Blueprint</a>
+      <a href="resources.html" class="nav-link" style="color: var(--accent);">Insights</a>
+      <a href="https://courses.betterwaysofworking.com" class="cta-nav">Courses</a>
+    </nav>
   </header>
-  
-<main class="page">
 
-  <section class="hero">
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Insights</h1>
+        <p>Practical ideas, conversations, and tools for leaders and teams looking for better ways of working.</p>
+      </div>
+    </section>
+
+    <section class="insights-section">
+      <div class="container">
+        <div class="insights-grid">
+          
+          <div class="insight-card">
+            <i class="fa-solid fa-envelope-open-text"></i>
+            <h3>Written</h3>
+            <p>Short, practical thinking delivered regularly via my Substack.</p>
+            <a href="https://bwow.substack.com" target="_blank" class="cta-card">Read the Newsletter</a>
+          </div>
+
+          <div class="insight-card">
+            <i class="fa-brands fa-youtube"></i>
+            <h3>Video</h3>
+            <p>Interviews, explainers, and visual walkthroughs of complex systems.</p>
+            <a href="https://www.youtube.com/@betterwaysofworking" target="_blank" class="cta-card">Watch on YouTube</a>
+          </div>
+
+          <div class="insight-card">
+            <i class="fa-solid fa-microphone"></i>
+            <h3>Audio</h3>
+            <p>Deep conversations with practitioners and leaders in the field.</p>
+            <a href="https://pod.link/aHR0cHM6Ly9hcGkuc3Vic3RhY2suY29tL2ZlZWQvcG9kY2FzdC8zMjc5NDM0LnJzcw" target="_blank" class="cta-card">Listen to the Podcast</a>
+          </div>
+
+          <div class="insight-card">
+            <i class="fa-brands fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <p>Real-time insights and visual explainers shared with the community.</p>
+            <a href="https://www.linkedin.com/company/better-ways-of-working-now/" target="_blank" class="cta-card">Follow on LinkedIn</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about-cta">
+      <div class="container">
+        <h2>Fix your team's friction</h2>
+        <p>Download the guide to fixing team flow and preparing for the AI era.</p>
+        <a href="https://bwow.substack.com/p/the-agile-team-flow-and-ai-readiness" class="cta-button">Get the Free Blueprint</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="container">
-      <h1>Insights</h1>
-      <p>
-        Practical ideas, conversations, and tools for leaders and teams
-        looking for better ways of working.
-      </p>
-    </div>
-  </section>
-
-<section class="content insights-section">
-  <div class="container insights-grid">
-
-    <div class="insight-card">
-      <i class="fa-solid fa-envelope-open-text"></i>
-      <h3>Written</h3>
-      <p>Short, practical thinking delivered regularly.</p>
-      <a href="https://bwow.substack.com" target="_blank" class="cta">
-        Read the Newsletter
-      </a>
-    </div>
-
-    <div class="insight-card">
-      <i class="fa-brands fa-youtube"></i>
-      <h3>Video</h3>
-      <p>Interviews, explainers, and visual walkthroughs.</p>
-      <a
-        href="https://www.youtube.com/@betterwaysofworking"
-        target="_blank"
-        class="cta"
-      >
-        Watch on YouTube
-      </a>
-    </div>
-
-    <div class="insight-card">
-      <i class="fa-solid fa-microphone"></i>
-      <h3>Audio</h3>
-      <p>Conversations with practitioners and leaders.</p>
-      <a
-        href="https://pod.link/aHR0cHM6Ly9hcGkuc3Vic3RhY2suY29tL2ZlZWQvcG9kY2FzdC8zMjc5NDM0LnJzcw"
-        target="_blank"
-        class="cta"
-      >
-        Listen to the Podcast
-      </a>
-    </div>
-
-  <div class="insight-card">
-    <i class="fa-brands fa-linkedin"></i>
-    <h3>LinkedIn</h3>
-    <p>
-      Short insights, visual explainers, and practical thinking
-      shared in real time.
-    </p>
-    <a
-      href="https://www.linkedin.com/company/better-ways-of-working-now/"
-      target="_blank"
-      class="cta"
-    >
-      Follow on LinkedIn
-    </a>
-</div>
-
-  </div>
-</section>
-
-
-<!--
-  <section id="guides">
-    <h2>Guides & Downloads</h2>
-    <p>Free tools and PDFs to support your journey.</p>
-    <ul>
-      <li><a href="path-to-guide.pdf" target="_blank">Guide Example</a></li>
-    </ul>
-  </section>
--->
-</main>
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; Better Ways of Working</p>
+      <p>&copy; 2026 Better Ways of Working. All rights reserved. <a href="https://bwow.substack.com" style="margin-left: 10px;">Substack</a></p>
     </div>
   </footer>
+
 </body>
 </html>
