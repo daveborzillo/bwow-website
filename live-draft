@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Draft | Sanity at Scale</title>
+  <meta name="description" content="Follow the live draft of Sanity at Scale. Read chapters as they are written and provide feedback directly in the Google Docs." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #111820;
+      --card: #151e28;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #7dd3fc;
+      --accent-glow: rgba(125, 211, 252, 0.4);
+      --border: #1e293b;
+      --brand-gradient: linear-gradient(135deg, #38bdf8, #818cf8);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: -0.02em; }
+
+    a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    /* --- Navigation --- */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(11, 15, 20, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+
+    .logo { display: flex; align-items: center; font-weight: 800; font-size: 1.25rem; color: var(--text); }
+    .logo-icon { height: 32px; width: 32px; background: var(--brand-gradient); border-radius: 8px; margin-right: 12px; box-shadow: 0 0 20px var(--accent-glow); }
+    .logo-text-gradient { background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .main-nav { display: flex; gap: 2rem; align-items: center; }
+    .nav-link { font-weight: 500; color: var(--muted); font-size: 0.95rem; }
+    .nav-link:hover { color: var(--text); }
+
+    /* --- Hero --- */
+    .draft-hero { padding: 80px 0 40px; text-align: center; }
+    .badge { display: inline-block; padding: 6px 12px; background: rgba(56, 189, 248, 0.1); color: var(--accent); border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 20px; }
+    .draft-hero h1 { font-size: clamp(32px, 5vw, 48px); margin-bottom: 16px; }
+    .draft-hero p { color: var(--muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+    /* --- Chapter List --- */
+    .chapter-section { padding: 40px 0 80px; }
+    
+    .part-header {
+      margin: 40px 0 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 800;
+    }
+
+    .chapter-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition);
+    }
+    
+    .chapter-card.available:hover { border-color: var(--accent); transform: translateX(4px); }
+    .chapter-card.locked { opacity: 0.5; cursor: not-allowed; }
+
+    .chapter-info { display: flex; align-items: center; gap: 20px; }
+    .chapter-number { 
+      font-size: 0.8rem; 
+      font-weight: 800; 
+      color: var(--accent); 
+      background: rgba(125, 211, 252, 0.1); 
+      width: 40px; height: 40px; 
+      display: flex; align-items: center; justify-content: center; 
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    
+    .chapter-details { display: flex; flex-direction: column; }
+    .chapter-title { font-weight: 700; font-size: 1.1rem; color: var(--text); }
+    .chapter-subtitle { font-size: 0.9rem; color: var(--muted); font-style: italic; margin-top: 2px; }
+    .chapter-status { font-size: 0.7rem; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+
+    .btn-read {
+      padding: 10px 20px;
+      background: var(--brand-gradient);
+      color: #0f172a;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .status-pill {
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(56, 189, 248, 0.2);
+      color: var(--accent);
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+
+    .locked-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* --- Participation Section --- */
+    .participation {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .participation h3 { margin-bottom: 16px; }
+    .participation p { color: var(--muted); margin-bottom: 20px; }
+    .participation ul { margin-left: 20px; color: var(--muted); }
+    .participation li { margin-bottom: 10px; }
+
+    footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--border); color: var(--muted); margin-top: 80px; }
+
+    @media (max-width: 768px) {
+      header { flex-direction: column; gap: 20px; padding: 20px; }
+      .chapter-card { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .btn-read { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="index.html">
+      <div class="logo-icon"></div>
+      <span>Better <span class="logo-text-gradient">Ways of Working</span></span>
+    </a>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="resources.html" class="nav-link">Insights</a>
+      <a href="index.html#book" class="nav-link">The Book</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="draft-hero">
+      <div class="badge">Open Collaborative Writing</div>
+      <h1>Sanity at Scale: Live Draft</h1>
+      <p>Building high-performing teams that don't rely on heroes. Read the active chapters below and help shape the final manuscript with your comments.</p>
+    </section>
+
+    <section class="chapter-section">
+      
+      <!-- Introduction -->
+      <div class="part-header">Foundation</div>
+      <div class="chapter-card available">
+        <div class="chapter-info">
+          <div class="chapter-number">I</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Introduction: The Efficiency Illusion <span class="status-pill">Live</span></div>
+            <div class="chapter-subtitle">Why "trying harder" is actually the problem.</div>
+            <div class="chapter-status">Published: Feb 2026</div>
+          </div>
+        </div>
+        <a href="https://docs.google.com/document/d/YOUR_DOC_ID_INTRO/edit" target="_blank" class="btn-read">Read & Comment</a>
+      </div>
+
+      <!-- Part I -->
+      <div class="part-header">Part I: The Hero Trap (Diagnosing the Madness)</div>
+      
+      <div class="chapter-card available">
+        <div class="chapter-info">
+          <div class="chapter-number">1</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Hero Trap <span class="status-pill">Live</span></div>
+            <div class="chapter-subtitle">Why your best people are hiding your broken processes.</div>
+            <div class="chapter-status">Published: Feb 2026</div>
+          </div>
+        </div>
+        <a href="https://docs.google.com/document/d/YOUR_DOC_ID_CH1/edit" target="_blank" class="btn-read">Read & Comment</a>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">2</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Process Paradox</div>
+            <div class="chapter-subtitle">How we created a bureaucracy to manage the heroes.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">3</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Dependency Web</div>
+            <div class="chapter-subtitle">Why heroes are always waiting.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <!-- Part II -->
+      <div class="part-header">Part II: The Clarity Protocols (System Over Self)</div>
+      
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">4</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Radical Simplification (Backlog Bankruptcy)</div>
+            <div class="chapter-subtitle">You can’t be a hero to everyone.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">5</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Value Litmus Test</div>
+            <div class="chapter-subtitle">If you can't measure the outcome, don't write the code.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">6</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Myth of "High, Medium, Low"</div>
+            <div class="chapter-subtitle">Why buckets fail and ordered lists save sanity.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">7</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Visualizing the Invisible</div>
+            <div class="chapter-subtitle">Replacing status meetings with status boards.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">8</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Art of the Hard "No"</div>
+            <div class="chapter-subtitle">Protecting your capacity.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <!-- Part III -->
+      <div class="part-header">Part III: Execution Without Exhaustion</div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">9</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Breaking the Big Rocks</div>
+            <div class="chapter-subtitle">Small batches > big bangs.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">10</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Synchronized Autonomy</div>
+            <div class="chapter-subtitle">Decoupling for speed.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">11</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Compliance as Code</div>
+            <div class="chapter-subtitle">Automating the safety net.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <!-- Part IV -->
+      <div class="part-header">Part IV: The Leadership Mandate</div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">12</div>
+          <div class="chapter-details">
+            <div class="chapter-title">The Anti-Hero Leader</div>
+            <div class="chapter-subtitle">Your job is to build the machine, not fix it yourself.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">13</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Designing for Slack</div>
+            <div class="chapter-subtitle">Why you need to let the ball drop.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="part-header">Closing</div>
+      <div class="chapter-card locked">
+        <div class="chapter-info">
+          <div class="chapter-number">...</div>
+          <div class="chapter-details">
+            <div class="chapter-title">Conclusion: The Sustainable Pace</div>
+            <div class="chapter-subtitle">A career you can survive; a life you can enjoy.</div>
+            <div class="chapter-status">Status: Upcoming</div>
+          </div>
+        </div>
+        <span class="locked-tag">Coming Soon</span>
+      </div>
+
+      <div class="participation">
+        <h3>How to Participate</h3>
+        <p>This is a live experiment in building in public. Here is how you can help:</p>
+        <ul>
+          <li><strong>Leave Comments:</strong> Highlight text in the Google Docs to ask questions or suggest clarifications.</li>
+          <li><strong>Share Examples:</strong> If a concept reminds you of a real-world win (or fail) at your company, share it.</li>
+          <li><strong>Check Back Weekly:</strong> I'll be adding new sections and responding to comments every Tuesday.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Better Ways of Working. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
