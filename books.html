@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Books | Better Ways of Working</title>
+<meta name="description" content="The Better Ways of Working book series by Dave Borzillo — Sanity at Scale, Who Killed Agile?, and United Agility." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0a0c10;
+  --paper:     #f8f8f6;
+  --white:     #ffffff;
+  --teal:      #1a7a6e;
+  --teal-dark: #145f55;
+  --teal-muted:#e8f4f2;
+  --red:       #c0392b;
+  --red-muted: #fdf1f0;
+  --muted:     #5c5f66;
+  --subtle:    #8a8d94;
+  --border:    #e2e2de;
+  --border-strong: #c8c8c2;
+  --amazon:    #FF9900;
+  --navy:      #1a2744;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+/* NAV */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(248,248,246,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+  max-width: 1080px; margin: 0 auto;
+}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+nav a:hover, nav a.active { color: var(--ink); }
+.nav-cta {
+  background: var(--amazon); color: var(--ink) !important;
+  padding: 8px 18px; border-radius: 3px;
+  font-weight: 700 !important; font-size: 0.82rem !important;
+  transition: background 0.15s !important;
+}
+.nav-cta:hover { background: #e68900 !important; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: 3px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; font-size: 0.875rem;
+  letter-spacing: 0.02em; cursor: pointer; transition: all 0.18s;
+}
+.btn-amazon { background: var(--amazon); color: var(--ink); box-shadow: 0 2px 8px rgba(255,153,0,0.25); }
+.btn-amazon:hover { background: #e68900; transform: translateY(-1px); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.25); }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.6); }
+.btn-free { background: var(--teal-muted); color: var(--teal); border: 1.5px solid #c8e8e4; }
+.btn-free:hover { background: #d4eeeb; }
+
+/* EYEBROW */
+.eyebrow {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 16px;
+}
+.eyebrow-neutral {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle); margin-bottom: 14px; display: block;
+}
+
+/* PAGE HEADER */
+.page-header {
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.page-header h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 1.05; margin-bottom: 12px;
+}
+.page-header h1 span { color: var(--teal); }
+.header-rule { width: 36px; height: 3px; background: var(--teal); margin-bottom: 20px; }
+.page-header p {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 52ch; line-height: 1.7;
+}
+
+/* BOOK ENTRIES */
+.book-entry {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+}
+.book-entry:last-child { border-bottom: none; }
+.book-entry-grid {
+  display: grid; grid-template-columns: 260px 1fr;
+  gap: 64px; align-items: start;
+}
+.book-entry-grid.reverse { grid-template-columns: 1fr 260px; }
+.book-entry-grid.reverse .book-cover-wrap { order: 2; }
+.book-entry-grid.reverse .book-content { order: 1; }
+
+/* Cover */
+.book-cover-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.book-cover-img {
+  width: 100%;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow: 12px 16px 32px rgba(0,0,0,0.18), 2px 3px 6px rgba(0,0,0,0.1);
+  transform: perspective(800px) rotateY(-6deg);
+  transition: transform 0.4s ease;
+}
+.book-cover-wrap:hover .book-cover-img { transform: perspective(800px) rotateY(-1deg); }
+
+/* Placeholder cover */
+.book-cover-placeholder {
+  width: 100%; aspect-ratio: 2/3;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow: 12px 16px 32px rgba(0,0,0,0.18);
+  transform: perspective(800px) rotateY(-6deg);
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 22px;
+  position: relative; overflow: hidden;
+}
+.book-cover-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+    transparent 1px, transparent 12px
+  );
+}
+.cover-accent { width: 32px; height: 3px; margin-bottom: 12px; }
+.cover-title {
+  font-size: 1.3rem; font-weight: 900;
+  letter-spacing: -0.02em; line-height: 1.1;
+  position: relative; z-index: 1;
+}
+.cover-author {
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.04em; opacity: 0.6;
+  position: relative; z-index: 1;
+}
+
+.book-cta-group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+.book-cta-group .btn { justify-content: center; }
+
+/* Content */
+.book-num-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--subtle); margin-bottom: 10px;
+}
+.book-status {
+  display: inline-block; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 3px 10px; border-radius: 2px; margin-left: 8px;
+  vertical-align: middle;
+}
+.status-new { background: var(--red); color: #fff; }
+.status-free { background: var(--teal); color: #fff; }
+.status-available { background: #e8f4f2; color: var(--teal); }
+
+.book-content h2 {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 1.05; margin-bottom: 8px;
+}
+.book-content .book-sub {
+  font-size: 1rem; color: var(--muted);
+  font-style: italic; margin-bottom: 20px;
+}
+.book-rule { width: 36px; height: 3px; background: var(--teal); margin-bottom: 20px; }
+.book-content p {
+  font-size: 0.975rem; color: var(--muted);
+  max-width: 54ch; line-height: 1.7; margin-bottom: 14px;
+}
+.book-content .pull-quote {
+  margin: 24px 0; padding: 18px 22px;
+  border-left: 3px solid var(--teal);
+  background: var(--teal-muted);
+}
+.book-content .pull-quote p {
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--ink); font-style: italic; margin: 0; max-width: 100%;
+}
+.book-ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+
+/* What's inside list */
+.inside-list {
+  list-style: none; margin: 20px 0; display: flex; flex-direction: column; gap: 8px;
+}
+.inside-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.875rem; color: var(--muted); line-height: 1.45;
+}
+.inside-dot {
+  width: 6px; height: 6px; background: var(--teal);
+  border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+}
+
+/* SERIES STRIP */
+.series-strip {
+  background: var(--ink); padding: 64px 0;
+}
+.series-strip h2 {
+  font-size: clamp(22px, 2.8vw, 30px);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: #fff; margin-bottom: 8px;
+}
+.series-strip p {
+  font-size: 0.975rem; color: rgba(255,255,255,0.5);
+  max-width: 52ch; margin-bottom: 36px; line-height: 1.7;
+}
+.series-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.series-card {
+  padding: 20px 22px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-top: 3px solid var(--teal);
+  border-radius: 0 0 3px 3px;
+  transition: background 0.18s;
+}
+.series-card:hover { background: rgba(255,255,255,0.07); }
+.series-card-num { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+.series-card h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.series-card p { font-size: 0.8rem; color: rgba(255,255,255,0.45); line-height: 1.55; }
+
+/* FOOTER */
+footer { background: var(--paper); border-top: 1px solid var(--border); padding: 28px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+.footer-links a:hover { color: var(--ink); }
+.footer-copy { font-size: 0.78rem; color: var(--subtle); }
+
+/* RESPONSIVE */
+@media (max-width: 880px) {
+  .book-entry-grid,
+  .book-entry-grid.reverse { grid-template-columns: 1fr; }
+  .book-entry-grid.reverse .book-cover-wrap,
+  .book-entry-grid.reverse .book-content { order: unset; }
+  .book-cover-wrap { max-width: 220px; }
+  .series-cards { grid-template-columns: 1fr; }
+  .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 32px; gap: 10px; }
+  nav { flex-wrap: wrap; gap: 16px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html" aria-label="Better Ways of Working">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="88.65956024169923 104.56278137207032 162.68087951660155 40.87443725585938" height="34" preserveAspectRatio="xMidYMid meet" color-interpolation-filters="sRGB" style="display:block;width:auto;"><g><defs><filter id="logo-f"><feColorMatrix type="matrix" values="0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 1 0"></feColorMatrix></filter></defs><g fill="#222222" transform="translate(90.25447082519531,106.1576919555664)"><g transform="translate(0,1.6280498504638672)"><g><rect fill="#222222" fill-opacity="0" x="0" y="0" width="34.270488738281244" height="34.428515624999996"></rect><svg filter="url(#logo-f)" x="0" y="0" width="34.270488738281244" height="34.428515624999996" style="overflow:visible;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="2.188 0 948.623 953"><g><path d="M430.589,953c236.6,0,428.401-191.801,428.401-428.4c0-72.799-18.102-141.299-50.102-201.299c-3.5,0.5-7.1,0.7-10.6,0.7c-2,0-4.1-0.1-6.199-0.2l-54.5-4.2l-39.201,39.2c29.9,48.2,47.201,105,47.201,165.799c0,173.9-141,314.9-314.901,314.9c-173.899,0-315-141-315-314.9c0-173.899,141-314.899,314.9-314.899c60.901,0,117.7,17.3,165.799,47.2l35.5-35.5l-4.799-62.5c-0.4-5-0.301-10,0.199-14.9c-58.9-30.5-125.799-47.8-196.799-47.8c-236.5,0-428.3,191.8-428.3,428.399S193.989,953,430.589,953z"/><path d="M430.589,413.9c2.8,0,5.6,0.101,8.4,0.3l79.1-79.1l1.699-1.7c-27.1-12.7-57.299-19.8-89.2-19.8c-116.5,0-210.9,94.4-210.9,210.9c0,116.5,94.4,211,210.9,211c116.5,0,210.901-94.4,210.901-210.9c0-31.9-7.102-62.099-19.801-89.2l-1.699,1.7l-79.102,79.099c0.201,2.801,0.301,5.602,0.301,8.4c0,61.1-49.5,110.701-110.7,110.701c-61.2,0-110.601-49.602-110.601-110.701C319.889,463.5,369.489,413.9,430.589,413.9z"/><path d="M872.089,142.6l25.4-25.4c11.6-11.6,11.6-30.3,0-41.9l-17.602-17.7c-5.799-5.8-13.398-8.7-20.898-8.7s-15.201,2.9-20.9,8.7l-29.1,29.1l-6-77.5c-0.4-5.7-5.102-9.2-10-9.2c-2.5,0-5,0.9-7,2.9l-114.5,114.5c-10.301,10.3-15.602,24.6-14.5,39.2l0.299,4.5l5.5,71.7l-41.4,41.4l-74.5,74.5l-1.699,1.7l-72.1,72.101l-32,32c-4.2,4.199-6.8,9.8-7.2,15.699l-2,25.101c-1.2,14.6,10.4,27,24.9,27c0.399,0,0.8,0,1.3,0l26.5-1.301c6.199-0.301,12.1-2.9,16.4-7.301L532.689,482l72.1-72.1l1.701-1.7l74.5-74.5l45-45l65.398,5l2.9,0.2c1.301,0.1,2.6,0.1,3.801,0.1c13.199,0,25.9-5.2,35.4-14.6L947.888,165c6-6,2.201-16.4-6.299-17L872.089,142.6z"/></g></svg></svg></g></g><g transform="translate(41.27048873901367,0)"><g fill="#222222"><g transform="scale(1)"><g><path d="M3.17-9.86L3.17-13.39 7.09-13.39 7.09-9.86 3.17-9.86ZM7.1-6.7L7.1-3.17 3.17-3.17 3.17-6.7 7.1-6.7ZM7.84-16.56L0-16.56 0 0 7.84 0 10.26-2.43 10.26-7.41 9.4-8.25 10.26-9.12 10.26-14.12 7.84-16.56ZM20.46-16.56L12.04-16.56 12.04 0 20.46 0 20.46-3.17 15.21-3.17 15.21-6.7 19.4-6.7 19.4-9.86 15.21-9.86 15.21-13.39 20.46-13.39 20.46-16.56ZM31.53-16.56L22.23-16.56 22.23-13.39 25.29-13.39 25.29 0 28.46 0 28.46-13.39 31.53-13.39 31.53-16.56ZM42.6-16.56L33.3-16.56 33.3-13.39 36.36-13.39 36.36 0 39.53 0 39.53-13.39 42.6-13.39 42.6-16.56ZM52.79-16.56L44.37-16.56 44.37 0 52.79 0 52.79-3.17 47.55-3.17 47.55-6.7 51.74-6.7 51.74-9.86 47.55-9.86 47.55-13.39 52.79-13.39 52.79-16.56ZM61.67-13.39L61.67-9.46 57.74-9.46 57.74-13.39 61.67-13.39ZM62.4-16.56L54.57-16.56 54.57 0 57.74 0 57.74-6.3 61.67-6.3 61.67 0 64.83 0 64.83-7.41 63.97-8.25 64.83-9.12 64.83-14.12 62.4-16.56ZM83.5-16.56L81.99-7.62 79.79-16.56 76.85-16.56 74.66-7.62 73.14-16.56 69.87-16.56 72.58 0 76.31 0 78.33-8.84 80.32 0 84.06 0 86.77-16.56 83.5-16.56ZM91.47-10.51L92.62-5.99 90.25-5.99 91.47-10.51ZM88.64 0L89.4-2.82 93.42-2.82 94.14 0 97.3 0 93.1-16.56 89.93-16.56 85.47 0 88.64 0ZM104.11-16.56L101.31-9.77 98.67-16.56 95.53-16.56 99.68-5.91 99.68 0 102.85 0 102.85-5.91 107.25-16.56 104.11-16.56ZM115.8-16.56L110.39-16.56 107.96-14.12 107.96-9.12 110.33-6.7 115.06-6.7 115.06-3.17 111.13-3.17 111.13-5.65 107.96-5.65 107.96-2.43 110.39 0 115.8 0 118.22-2.43 118.22-7.41 117.36-8.25 117.37-8.26 115.74-9.86 111.13-9.86 111.13-13.39 115.06-13.39 115.06-10.92 118.22-10.92 118.22-14.12 115.8-16.56Z" transform="translate(0,16.559999465942383)"></path></g><g transform="translate(0,19.559999465942383)"><g transform="scale(1.00136)"><path d="M7.76-14.64L7.76-3.47 3.47-3.47 3.47-14.64 7.76-14.64ZM8.57-18.1L2.65-18.1 0-15.44 0-2.65 2.65 0 8.57 0 11.22-2.65 11.22-15.44 8.57-18.1ZM22.36-18.1L13.16-18.1 13.16 0 16.63 0 16.63-7.32 21.21-7.32 21.21-10.78 16.63-10.78 16.63-14.64 22.36-14.64 22.36-18.1ZM42.77-18.1L41.11-8.33 38.72-18.1 35.5-18.1 33.1-8.33 31.45-18.1 27.87-18.1 30.84 0 34.91 0 37.11-9.67 39.29 0 43.38 0 46.34-18.1 42.77-18.1ZM55.4-14.64L55.4-3.47 51.1-3.47 51.1-14.64 55.4-14.64ZM56.2-18.1L50.29-18.1 47.64-15.44 47.64-2.65 50.29 0 56.2 0 58.85-2.65 58.85-15.44 56.2-18.1ZM68.56-14.64L68.56-10.34 64.26-10.34 64.26-14.64 68.56-14.64ZM69.36-18.1L60.8-18.1 60.8 0 64.26 0 64.26-6.88 68.56-6.88 68.56 0 72.02 0 72.02-8.1 71.07-9.02 72.02-9.96 72.02-15.44 69.36-18.1ZM85.6-18.1L81.73-18.1 77.42-10.57 77.42-18.1 73.96-18.1 73.96 0 77.42 0 77.42-7.52 81.73 0 85.6 0 80.41-9.05 85.6-18.1ZM87.54-18.1L87.54 0 91.01 0 91.01-18.1 87.54-18.1ZM101.43-18.1L101.43-7.79 96.85-18.1 92.95-18.1 92.95 0 96.42 0 96.42-10.31 101 0 104.9 0 104.9-18.1 101.43-18.1ZM115.41-18.1L109.49-18.1 106.84-15.44 106.84-2.65 109.49 0 115.41 0 118.06-2.65 118.06-10.78 112.61-10.78 112.61-7.32 114.6-7.32 114.6-3.47 110.31-3.47 110.31-14.64 114.6-14.64 114.6-11.93 118.06-11.93 118.06-15.44 115.41-18.1Z" transform="translate(0,18.100000381469727)"></path></g></g></g></g></g></g></svg>
+    </a>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="resources.html">Insights</a>
+      <a href="books.html" class="active">Books</a>
+      <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="nav-cta">Get Notified →</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+  <div class="container">
+    <div class="eyebrow">The Better Ways of Working Series</div>
+    <div class="header-rule"></div>
+    <h1>Three books.<br><span>One through line.</span></h1>
+    <p>Diagnose the dysfunction, understand what went wrong, and fix it — for good. The series takes leaders from awareness to action.</p>
+  </div>
+</section>
+
+<!-- BOOK 3: SANITY AT SCALE -->
+<section class="book-entry" id="sanity-at-scale">
+  <div class="container">
+    <div class="book-entry-grid">
+      <div class="book-cover-wrap">
+        <img class="book-cover-img" src="sanity-at-scale-front-cover.png" alt="Sanity at Scale by Dave Borzillo">
+        <div class="book-cta-group">
+          <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="btn btn-amazon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13.23 10.56C13.23 11.14 13.24 11.63 13.21 12.11C13.21 12.24 13.13 12.41 13.04 12.48C12.34 13.05 11.54 13.31 10.65 13.2C9.84 13.1 9.28 12.56 9.18 11.75C9.03 10.55 9.78 9.76 11.06 9.65C11.76 9.59 12.47 9.68 13.23 9.68V10.56ZM15.51 15.26C15.35 15.4 15.12 15.56 14.87 15.46C13.82 14.57 13.65 14.01 13.23 13.31C12.07 14.49 11.26 14.86 9.74 14.86C7.95 14.86 6.55 13.77 6.55 11.57C6.55 9.87 7.47 8.72 8.79 8.17C9.94 7.69 11.54 7.6 12.76 7.46V7.19C12.76 6.69 12.8 6.1 12.52 5.66C12.27 5.27 11.82 5.11 11.42 5.11C10.67 5.11 10.01 5.5 9.85 6.31C9.82 6.47 9.7 6.63 9.54 6.64L7.4 6.41C7.25 6.38 7.09 6.26 7.13 6.04C7.64 3.36 10.07 2.5 12.26 2.5C13.38 2.5 14.84 2.8 15.73 3.65C16.85 4.69 16.74 6.09 16.74 7.6V11.03C16.74 12.06 17.17 12.52 17.57 13.08C17.72 13.29 17.75 13.54 17.56 13.7C17.1 14.09 16.28 14.81 15.82 15.24L15.51 15.26Z" fill="currentColor"/><path d="M19.47 17.75C17.03 19.44 13.49 20.35 10.45 20.35C6.12 20.35 2.22 18.74 -0.01 16.1C-0.18 15.91 0.01 15.65 0.24 15.8C2.66 17.23 5.65 18.09 8.75 18.09C11.01 18.09 13.49 17.62 15.78 16.65C16.14 16.5 16.43 16.88 16.14 17.17" fill="currentColor"/><path d="M20.31 16.78C20.07 16.48 18.73 16.64 18.12 16.71C17.94 16.73 17.91 16.57 18.07 16.45C19.15 15.69 20.9 15.91 21.1 16.17C21.3 16.43 21.04 18.19 20.02 19.04C19.87 19.16 19.73 19.1 19.79 18.93C20.02 18.33 20.55 17.08 20.31 16.78Z" fill="currentColor"/></svg>
+            Get Notified at Launch
+          </a>
+          <a href="/sanity-audit.pdf" target="_blank" class="btn btn-free">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 20h16v2H4v-2z" fill="currentColor"/></svg>
+            Free: The Sanity Audit PDF
+          </a>
+        </div>
+      </div>
+      <div class="book-content">
+        <span class="book-num-tag">Book 3 in the Series</span>
+        <span class="book-status status-new">Launches June 26</span>
+        <h2>Sanity at Scale</h2>
+        <p class="book-sub">How Engineering Leaders Move from Heroic Firefighting to Systemic Excellence</p>
+        <div class="book-rule"></div>
+        <p>Your team is busy. Your backlog is full. And somehow, nothing important is getting done. <em>Sanity at Scale</em> is the no-nonsense manual for leaders who are done pretending more process is the answer.</p>
+        <p>Drawing on high-consequence failure prevention protocols and two decades of scaling organizations, Dave delivers a blueprint for leaders who want to stop being the hero — and start building systems that work without them.</p>
+        <div class="pull-quote">
+          <p>"This is not a fluffy, touchy-feely book. It is a manual for industrial execution. It cuts through the noise of Agile buzzwords and snowflake nonsense." — Luiz "Q" Quintela, Raskere</p>
+        </div>
+        <ul class="inside-list">
+          <li><span class="inside-dot"></span>The Hero Trap — why your best people are hiding your broken processes</li>
+          <li><span class="inside-dot"></span>Radical Simplification — the Backlog Bankruptcy protocol</li>
+          <li><span class="inside-dot"></span>The Myth of "High, Medium, Low" — and what actually works</li>
+          <li><span class="inside-dot"></span>The Art of the Hard No — protecting focus in a world of yes</li>
+          <li><span class="inside-dot"></span>The Sustainable Pace — a career you can survive, a life you can enjoy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK 2: WHO KILLED AGILE -->
+<section class="book-entry" style="background: var(--white);" id="who-killed-agile">
+  <div class="container">
+    <div class="book-entry-grid reverse">
+      <div class="book-cover-wrap">
+        <img class="book-cover-img" src="who-killed-agile-cover.png" alt="Who Killed Agile? by Luiz Q Quintela and Dave Borzillo">
+        <div class="book-cta-group">
+          <a href="https://a.co/d/01TlrSGZ" target="_blank" rel="noopener" class="btn btn-amazon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M13.23 10.56C13.23 11.14 13.24 11.63 13.21 12.11C13.21 12.24 13.13 12.41 13.04 12.48C12.34 13.05 11.54 13.31 10.65 13.2C9.84 13.1 9.28 12.56 9.18 11.75C9.03 10.55 9.78 9.76 11.06 9.65C11.76 9.59 12.47 9.68 13.23 9.68V10.56ZM15.51 15.26C15.35 15.4 15.12 15.56 14.87 15.46C13.82 14.57 13.65 14.01 13.23 13.31C12.07 14.49 11.26 14.86 9.74 14.86C7.95 14.86 6.55 13.77 6.55 11.57C6.55 9.87 7.47 8.72 8.79 8.17C9.94 7.69 11.54 7.6 12.76 7.46V7.19C12.76 6.69 12.8 6.1 12.52 5.66C12.27 5.27 11.82 5.11 11.42 5.11C10.67 5.11 10.01 5.5 9.85 6.31C9.82 6.47 9.7 6.63 9.54 6.64L7.4 6.41C7.25 6.38 7.09 6.26 7.13 6.04C7.64 3.36 10.07 2.5 12.26 2.5C13.38 2.5 14.84 2.8 15.73 3.65C16.85 4.69 16.74 6.09 16.74 7.6V11.03C16.74 12.06 17.17 12.52 17.57 13.08C17.72 13.29 17.75 13.54 17.56 13.7C17.1 14.09 16.28 14.81 15.82 15.24L15.51 15.26Z" fill="currentColor"/><path d="M19.47 17.75C17.03 19.44 13.49 20.35 10.45 20.35C6.12 20.35 2.22 18.74 -0.01 16.1C-0.18 15.91 0.01 15.65 0.24 15.8C2.66 17.23 5.65 18.09 8.75 18.09C11.01 18.09 13.49 17.62 15.78 16.65C16.14 16.5 16.43 16.88 16.14 17.17" fill="currentColor"/><path d="M20.31 16.78C20.07 16.48 18.73 16.64 18.12 16.71C17.94 16.73 17.91 16.57 18.07 16.45C19.15 15.69 20.9 15.91 21.1 16.17C21.3 16.43 21.04 18.19 20.02 19.04C19.87 19.16 19.73 19.1 19.79 18.93C20.02 18.33 20.55 17.08 20.31 16.78Z" fill="currentColor"/></svg>
+            Buy on Amazon
+          </a>
+        </div>
+      </div>
+      <div class="book-content">
+        <span class="book-num-tag">Book 2 in the Series · Co-authored with Luiz "Q" Quintela</span>
+        <span class="book-status status-available">Available Now</span>
+        <h2>Who Killed Agile?</h2>
+        <p class="book-sub">The autopsy of a failed transformation</p>
+        <div class="book-rule"></div>
+        <p>Agile transformations fail all the time. The ceremonies get rolled out, the coaches get hired, the frameworks get installed — and two years later, the teams are more frustrated than before. <em>Who Killed Agile?</em> is the forensic look at why.</p>
+        <p>Dave Borzillo examines the most common causes of death: the wrong incentives, the wrong metrics, the wrong definition of done. And more importantly, what the organizations that actually get it right do differently.</p>
+        <ul class="inside-list">
+          <li><span class="inside-dot"></span>Why agile transformations fail even when everyone means well</li>
+          <li><span class="inside-dot"></span>The most common killers — leadership theater, metric gaming, and framework cargo-culting</li>
+          <li><span class="inside-dot"></span>What distinguishes teams that make it work from teams that don't</li>
+          <li><span class="inside-dot"></span>How to diagnose your own transformation before it flatlines</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK 1: UNITED AGILITY -->
+<section class="book-entry" id="united-agility">
+  <div class="container">
+    <div class="book-entry-grid">
+      <div class="book-cover-wrap">
+        <img class="book-cover-img" src="united-agility-cover.png" alt="United Agility 2nd Edition by Dave Borzillo">
+        <div class="book-cta-group">
+          <a href="https://betterwaysofworking.com/united-agility-book.pdf" target="_blank" class="btn btn-free">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 20h16v2H4v-2z" fill="currentColor"/></svg>
+            Download PDF — Free
+          </a>
+          <a href="https://betterwaysofworking.com/united-agility-book.epub" target="_blank" class="btn btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z" fill="currentColor"/><path d="M4 20h16v2H4v-2z" fill="currentColor"/></svg>
+            Download ePub — Free
+          </a>
+        </div>
+      </div>
+      <div class="book-content">
+        <span class="book-num-tag">Book 1 in the Series</span>
+        <span class="book-status status-free">Free Download</span>
+        <h2>United Agility</h2>
+        <p class="book-sub">Uniting Product and Business Agility · A primer for the new. A mirror for the practiced.</p>
+        <div class="book-rule"></div>
+        <p>Most agile transformations fail because product and business teams never truly align. <em>United Agility</em> is the primer — the book that lays the foundation for understanding what agile is actually supposed to do, and why the gap between teams doing agile and organizations being agile is where transformations die.</p>
+        <p>The second edition has been fully revised with new chapters on Business Agility, Value Stream Mapping, and OKRs — available free in PDF and ePub.</p>
+        <ul class="inside-list">
+          <li><span class="inside-dot"></span>What agile is — and what it was never meant to be</li>
+          <li><span class="inside-dot"></span>Why uniting product and business agility is the only transformation that sticks</li>
+          <li><span class="inside-dot"></span>The 12 agile principles organized around People, Delivery, Collaboration, and Improvement</li>
+          <li><span class="inside-dot"></span>New in the 2nd Edition: Business Agility, VSM, and OKRs</li>
+        </ul>
+        <div class="pull-quote">
+          <p>Free because the ideas matter more than the revenue. Read it, share it, use it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERIES STRIP -->
+<section class="series-strip">
+  <div class="container">
+    <div class="eyebrow-neutral" style="color:rgba(255,255,255,0.3);">The complete series</div>
+    <h2>Read them in order. Or start where you are.</h2>
+    <p>Each book stands alone — but together they take you from understanding agile to diagnosing what killed it to building systems that actually work at scale.</p>
+    <div class="series-cards">
+      <a href="#united-agility" class="series-card">
+        <div class="series-card-num">Book 1 · Free</div>
+        <h3>United Agility</h3>
+        <p>The foundation. What agile is, why alignment matters, and how to close the gap between doing agile and being agile.</p>
+      </a>
+      <a href="#who-killed-agile" class="series-card">
+        <div class="series-card-num">Book 2 · Amazon</div>
+        <h3>Who Killed Agile?</h3>
+        <p>The autopsy. Why transformations fail and what the organizations that get it right do differently.</p>
+      </a>
+      <a href="#sanity-at-scale" class="series-card">
+        <div class="series-card-num">Book 3 · June 26</div>
+        <h3>Sanity at Scale</h3>
+        <p>The manual. How to move from heroic firefighting to systems that deliver without burning everyone out.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Better Ways of Working. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="resources.html">Insights</a>
+        <a href="books.html">Books</a>
+        <a href="mailto:dave@betterwaysofworking.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

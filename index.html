@@ -1,492 +1,724 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Better Ways of Working | Sanity at Scale</title>
-  <meta name="description" content="Better Ways of Working helps leaders and teams create clarity, collaboration, and momentum—so they deliver better outcomes without burnout or bureaucracy." />
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sanity at Scale | Dave Borzillo</title>
+<meta name="description" content="The leader's manual for high-velocity delivery without the burnout, bureaucracy, or chaos. Now available on Amazon." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg: #0b0f14;
-      --surface: #111820;
-      --card: #151e28;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #7dd3fc;
-      --accent-glow: rgba(125, 211, 252, 0.4);
-      --border: #1e293b;
-      --brand-gradient: linear-gradient(135deg, #38bdf8, #818cf8);
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+<style>
+:root {
+  --ink:       #0a0c10;
+  --paper:     #f8f8f6;
+  --white:     #ffffff;
+  --teal:      #1a7a6e;
+  --teal-dark: #145f55;
+  --teal-muted:#e8f4f2;
+  --red:       #c0392b;
+  --red-muted: #fdf1f0;
+  --gold:      #b8860b;
+  --muted:     #5c5f66;
+  --subtle:    #8a8d94;
+  --border:    #e2e2de;
+  --border-strong: #c8c8c2;
+  --amazon:    #FF9900;
+}
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    h1, h2, h3, .logo-text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      letter-spacing: -0.02em;
-    }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
 
-    a { 
-      color: var(--accent); 
-      text-decoration: none; 
-      transition: var(--transition); 
-    }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fu  { opacity: 0; animation: fadeUp 0.55s ease forwards; }
+.d1  { animation-delay: 0.08s; }
+.d2  { animation-delay: 0.18s; }
+.d3  { animation-delay: 0.28s; }
+.d4  { animation-delay: 0.38s; }
+.d5  { animation-delay: 0.50s; }
 
-    /* --- Header --- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(11, 15, 20, 0.8);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-    }
+/* ── NAV ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(248,248,246,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+  max-width: 1080px; margin: 0 auto;
+}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+nav a:hover { color: var(--ink); }
+.nav-cta {
+  background: var(--amazon); color: var(--ink) !important;
+  padding: 8px 18px; border-radius: 3px;
+  font-weight: 700 !important; font-size: 0.82rem !important;
+  letter-spacing: 0.02em;
+  transition: background 0.15s !important;
+}
+.nav-cta:hover { background: #e68900 !important; }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-weight: 800;
-      font-size: 1.25rem;
-      color: var(--text);
-    }
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: 3px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  cursor: pointer; transition: all 0.18s;
+}
+.btn-amazon {
+  background: var(--amazon); color: var(--ink);
+  box-shadow: 0 2px 8px rgba(255,153,0,0.3);
+}
+.btn-amazon:hover { background: #e68900; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(255,153,0,0.35); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-white { background: var(--white); color: var(--ink); }
+.btn-white:hover { background: #f0f0ee; transform: translateY(-1px); }
+.btn-outline-white { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.25); }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.6); }
 
-    .logo-icon {
-      height: 32px;
-      width: 32px;
-      background: var(--brand-gradient);
-      border-radius: 8px;
-      margin-right: 12px;
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
+/* ── EYEBROW ── */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 16px;
+}
+.eyebrow-neutral {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle); margin-bottom: 14px;
+}
 
-    .logo-text-gradient {
-      background: var(--brand-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* ── HERO ── */
+.hero { padding: 80px 0 72px; }
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 320px;
+  gap: 72px; align-items: center;
+}
+.hero h1 {
+  font-size: clamp(40px, 5.5vw, 60px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 1.0; margin-bottom: 20px;
+  color: var(--ink);
+}
+.hero h1 span { color: var(--teal); }
+.hero-rule { width: 36px; height: 3px; background: var(--teal); margin-bottom: 20px; }
+.hero-sub {
+  font-size: 1.05rem; font-weight: 400;
+  color: var(--muted); max-width: 48ch;
+  line-height: 1.7; margin-bottom: 32px;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-    .main-nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
+/* Book cover */
+.book-wrap {
+  display: flex; justify-content: center;
+  perspective: 900px;
+}
+.book-img {
+  width: 100%;
+  max-width: 280px;
+  transform: rotateY(-8deg);
+  transition: transform 0.4s ease;
+  border-radius: 2px 5px 5px 2px;
+  box-shadow: 18px 24px 48px rgba(0,0,0,0.2), 2px 4px 8px rgba(0,0,0,0.1);
+  position: relative;
+}
+.book-wrap:hover .book-img { transform: rotateY(-2deg); }
 
-    .nav-link {
-      font-weight: 500;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+/* ── PROOF BAR ── */
+.proof-bar { background: var(--ink); padding: 24px 0; }
+.proof-inner {
+  display: flex; align-items: center; gap: 0;
+  justify-content: center; flex-wrap: wrap;
+}
+.proof-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 0 36px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+}
+.proof-item:last-child { border-right: none; }
+.proof-num {
+  font-size: 1.5rem; font-weight: 900;
+  letter-spacing: -0.03em; color: var(--white);
+}
+.proof-label {
+  font-size: 0.75rem; font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  line-height: 1.3;
+}
 
-    .nav-link:hover {
-      color: var(--text);
-    }
+/* ── SECTION COMMONS ── */
+.section { padding: 88px 0; }
+.section-alt { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-dark { background: var(--ink); }
+.section-teal-light { background: var(--teal-muted); border-top: 1px solid #c8e8e4; border-bottom: 1px solid #c8e8e4; }
 
-    /* --- Hero Section --- */
-    .hero {
-      padding: 120px 0 80px;
-      text-align: center;
-      position: relative;
-    }
+.section h2 {
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1.1; margin-bottom: 14px;
+}
+.section h2 span { color: var(--red); }
+.section .lead {
+  font-size: 1.05rem; color: var(--muted);
+  max-width: 54ch; margin-bottom: 48px; line-height: 1.7;
+}
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100vw;
-      height: 600px;
-      background: radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: -1;
-    }
+/* ── PROBLEM ── */
+.symptoms-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+}
+.symptom {
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--red);
+  background: var(--white); border-radius: 0 3px 3px 0;
+}
+.symptom strong { display: block; font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+.symptom p { font-size: 0.83rem; color: var(--muted); line-height: 1.5; }
 
-    .hero h1 {
-      font-size: clamp(40px, 8vw, 72px);
-      line-height: 1.05;
-      margin-bottom: 24px;
-      max-width: 18ch;
-      margin-left: auto;
-      margin-right: auto;
-      font-weight: 800;
-    }
+/* ── TESTIMONIAL ── */
+.testimonial-wrap { max-width: 780px; }
+.testimonial-quote {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 500; line-height: 1.65;
+  color: var(--white); margin-bottom: 28px;
+}
+.testimonial-quote strong { color: #6ee7b7; font-weight: 700; }
+.testimonial-attr {
+  display: flex; align-items: center; gap: 14px;
+}
+.attr-rule { width: 28px; height: 2px; background: var(--teal); flex-shrink: 0; }
+.attr-text {
+  font-size: 0.78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.45);
+}
+.chapter-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+.chapter-pill {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 16px; border-radius: 2px;
+  font-size: 0.78rem; font-weight: 500;
+  color: rgba(255,255,255,0.55);
+}
+.chapter-pill strong { color: rgba(255,255,255,0.85); font-weight: 700; }
 
-    .hero-subtitle {
-      color: var(--muted);
-      font-size: clamp(18px, 2.5vw, 22px);
-      max-width: 65ch;
-      margin: 0 auto 40px;
-    }
+/* ── BETA READER GRID ── */
+.beta-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-top: 48px;
+}
+.beta-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 3px; padding: 22px 20px;
+}
+.beta-quote {
+  font-size: 0.88rem; font-weight: 400;
+  color: rgba(255,255,255,0.72); line-height: 1.65;
+  font-style: italic; margin-bottom: 16px;
+}
+.beta-attr {
+  font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+}
+.beta-chapter {
+  font-size: 0.68rem; font-weight: 600;
+  color: var(--teal); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 10px;
+}
+@media (max-width: 880px) {
+  .beta-grid { grid-template-columns: 1fr; }
+}
 
-    .hero-ctas {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+/* ── CHAPTERS ── */
+.chapters-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.chapter-card {
+  padding: 24px 22px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.chapter-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.chapter-card.featured {
+  border-color: var(--teal);
+  background: var(--teal-muted);
+}
+.ch-num {
+  font-size: 0.68rem; font-weight: 800;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--subtle); margin-bottom: 10px;
+}
+.chapter-card.featured .ch-num { color: var(--teal); }
+.ch-tag {
+  display: inline-block;
+  font-size: 0.62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  background: var(--teal); color: #fff;
+  padding: 2px 8px; border-radius: 2px;
+  margin-bottom: 8px;
+}
+.chapter-card h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 7px; line-height: 1.3; }
+.chapter-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
 
-    /* --- Buttons --- */
-    .btn {
-      display: inline-block;
-      padding: 16px 32px;
-      border-radius: 12px;
-      font-weight: 700;
-      text-align: center;
-      cursor: pointer;
-      transition: var(--transition);
-    }
+/* ── TRANSFORMATION ── */
+.transform-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+}
+.transform-col { padding: 40px 36px; }
+.transform-col-before { background: var(--white); border-right: 1px solid var(--border); }
+.transform-col-after  { background: var(--teal-muted); }
+.transform-col h3 {
+  font-size: 0.78rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+}
+.t-tag {
+  font-size: 0.62rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 8px; border-radius: 2px;
+}
+.t-tag-before { background: var(--red-muted); color: var(--red); }
+.t-tag-after  { background: rgba(26,122,110,0.12); color: var(--teal); }
+.t-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.t-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.875rem; color: var(--muted); line-height: 1.45;
+}
+.t-icon {
+  flex-shrink: 0; width: 18px; height: 18px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.62rem; font-weight: 800; margin-top: 2px;
+}
+.t-x { background: var(--red-muted); color: var(--red); }
+.t-c { background: rgba(26,122,110,0.13); color: var(--teal); }
 
-    .btn-primary {
-      background: var(--brand-gradient);
-      color: #0f172a;
-      box-shadow: 0 10px 20px -5px rgba(56, 189, 248, 0.3);
-    }
+/* ── GUIDE ── */
+.guide-grid {
+  display: grid; grid-template-columns: 300px 1fr;
+  gap: 64px; align-items: start;
+}
+.guide-photo {
+  aspect-ratio: 4/5; overflow: hidden;
+  border-radius: 3px; background: #ddd;
+  border: 1px solid var(--border);
+  box-shadow: 6px 6px 0 var(--border);
+}
+.guide-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.guide-photo-fallback {
+  width: 100%; height: 100%; min-height: 320px;
+  display: flex; align-items: center; justify-content: center;
+  background: #e8e8e4; color: var(--muted); font-size: 0.9rem;
+  text-align: center; padding: 20px;
+}
+.creds { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.cred {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 3px; padding: 7px 12px;
+  font-size: 0.78rem; font-weight: 600; color: var(--ink);
+}
+.cred-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+.guide-content h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+.guide-content p { font-size: 0.975rem; color: var(--muted); margin-bottom: 14px; max-width: 52ch; line-height: 1.7; }
+.pull-quote {
+  margin: 28px 0; padding: 20px 24px;
+  border-left: 3px solid var(--teal);
+  background: var(--teal-muted);
+}
+.pull-quote p { font-size: 0.95rem; font-weight: 600; color: var(--ink); font-style: italic; margin: 0; max-width: 100%; }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.4);
-      opacity: 1;
-    }
+/* ── FINAL BUY ── */
+.buy-section { text-align: center; }
+.buy-section h2 {
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 900; letter-spacing: -0.04em;
+  color: var(--white); max-width: 22ch; margin: 0 auto 14px;
+}
+.buy-section p {
+  font-size: 1rem; color: rgba(255,255,255,0.5);
+  max-width: 48ch; margin: 0 auto 36px; line-height: 1.7;
+}
+.buy-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
+/* ── FOOTER ── */
+footer { background: var(--paper); border-top: 1px solid var(--border); padding: 28px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+.footer-links a:hover { color: var(--ink); }
+.footer-copy { font-size: 0.78rem; color: var(--subtle); }
 
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: var(--accent);
-    }
-
-    /* --- Sections --- */
-    .stakes-section {
-      padding: 80px 0;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .stakes-section h2 {
-      font-size: clamp(28px, 4vw, 36px);
-      margin-bottom: 16px;
-    }
-
-    .stakes-section p {
-      max-width: 70ch;
-      margin: 0 auto;
-      font-size: 1.15rem;
-      color: var(--muted);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 12px;
-      background: rgba(56, 189, 248, 0.1);
-      color: var(--accent);
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 20px;
-    }
-
-    /* --- Book Spotlight --- */
-    .book-spotlight {
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      border-radius: 32px;
-      padding: 80px 60px;
-      margin: 60px 0;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .book-spotlight::before {
-      content: '';
-      position: absolute;
-      width: 100%; height: 100%;
-      background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-      opacity: 0.05;
-      top: 0; left: 0;
-      pointer-events: none;
-    }
-
-    .book-content { flex: 1.2; }
-    .book-content h2 { font-size: 3rem; margin-bottom: 16px; text-align: left; }
-    .book-content p { font-size: 1.25rem; color: var(--muted); margin-bottom: 32px; }
-
-    .book-visual {
-      flex: 0.8;
-      background: linear-gradient(160deg, #334155 0%, #0f172a 100%);
-      aspect-ratio: 3/4;
-      border-radius: 12px;
-      box-shadow: 20px 20px 60px rgba(0,0,0,0.5), inset 1px 1px 1px rgba(255,255,255,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      border-left: 5px solid #1e293b;
-      transform: perspective(1000px) rotateY(-15deg);
-    }
-
-    /* --- Transformation Grid --- */
-    .transformation-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      margin-top: 48px;
-    }
-
-    .transform-card {
-      padding: 40px;
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-    }
-
-    .card-red { background: rgba(239, 68, 68, 0.02); border-color: rgba(239, 68, 68, 0.1); }
-    .card-blue { background: rgba(56, 189, 248, 0.02); border-color: rgba(56, 189, 248, 0.2); }
-
-    .transform-card h3 { margin-bottom: 24px; font-size: 1.5rem; }
-    
-    .check-list { list-style: none; }
-    .check-list li {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 16px;
-      color: var(--muted);
-    }
-
-    .check-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .card-red li::before { content: '✕'; color: #ef4444; }
-
-    /* --- Plan Steps --- */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-      margin-top: 60px;
-    }
-
-    .step-item {
-      text-align: center;
-      padding: 40px;
-      background: var(--surface);
-      border-radius: 24px;
-      border: 1px solid var(--border);
-      position: relative;
-    }
-
-    .step-num {
-      width: 48px;
-      height: 48px;
-      background: var(--brand-gradient);
-      color: #0f172a;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      margin: 0 auto 24px;
-      font-size: 1.25rem;
-    }
-
-    footer {
-      padding: 60px 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    @media (max-width: 968px) {
-      header { flex-direction: column; gap: 20px; padding: 20px; }
-      .main-nav { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-      .transformation-grid, .steps-grid { grid-template-columns: 1fr; }
-      .book-spotlight { flex-direction: column; text-align: center; padding: 40px 24px; }
-      .book-content h2 { text-align: center; font-size: 2.25rem; }
-      .book-visual { transform: none; width: 240px; margin: 0 auto; }
-      .hero h1 { font-size: 48px; }
-    }
-  </style>
+/* ── RESPONSIVE ── */
+@media (max-width: 880px) {
+  .hero-grid, .guide-grid { grid-template-columns: 1fr; }
+  .book-wrap { justify-content: flex-start; }
+  .book-img { max-width: 220px; }
+  .chapters-grid { grid-template-columns: repeat(2, 1fr); }
+  .transform-grid { grid-template-columns: 1fr; }
+  .transform-col-before { border-right: none; border-bottom: 1px solid var(--border); }
+  .symptoms-grid { grid-template-columns: 1fr; }
+  .proof-item { padding: 12px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .proof-item:last-child { border-bottom: none; }
+  .proof-inner { flex-direction: column; align-items: flex-start; padding: 0 32px; }
+  .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 32px; gap: 10px; }
+  nav { flex-wrap: wrap; gap: 16px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .chapters-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 20px; }
+}
+</style>
 </head>
-
 <body>
 
-  <header>
-   <a class="logo" href="index.html">
-      <img src="better ways of working Logo Symbol.png" alt="Better Ways of Working Logo" class="logo-icon">
-      <span>Better <span class="logo-text-gradient">Ways of Working</span></span>
+<!-- NAV -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html" aria-label="Better Ways of Working">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="88.65956024169923 104.56278137207032 162.68087951660155 40.87443725585938" height="34" preserveAspectRatio="xMidYMid meet" color-interpolation-filters="sRGB" style="display:block;width:auto;"><g><defs><filter id="logo-f"><feColorMatrix type="matrix" values="0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 1 0"></feColorMatrix></filter></defs><g fill="#222222" transform="translate(90.25447082519531,106.1576919555664)"><g transform="translate(0,1.6280498504638672)"><g><rect fill="#222222" fill-opacity="0" x="0" y="0" width="34.270488738281244" height="34.428515624999996"></rect><svg filter="url(#logo-f)" x="0" y="0" width="34.270488738281244" height="34.428515624999996" style="overflow:visible;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="2.188 0 948.623 953"><g><path d="M430.589,953c236.6,0,428.401-191.801,428.401-428.4c0-72.799-18.102-141.299-50.102-201.299c-3.5,0.5-7.1,0.7-10.6,0.7c-2,0-4.1-0.1-6.199-0.2l-54.5-4.2l-39.201,39.2c29.9,48.2,47.201,105,47.201,165.799c0,173.9-141,314.9-314.901,314.9c-173.899,0-315-141-315-314.9c0-173.899,141-314.899,314.9-314.899c60.901,0,117.7,17.3,165.799,47.2l35.5-35.5l-4.799-62.5c-0.4-5-0.301-10,0.199-14.9c-58.9-30.5-125.799-47.8-196.799-47.8c-236.5,0-428.3,191.8-428.3,428.399S193.989,953,430.589,953z"/><path d="M430.589,413.9c2.8,0,5.6,0.101,8.4,0.3l79.1-79.1l1.699-1.7c-27.1-12.7-57.299-19.8-89.2-19.8c-116.5,0-210.9,94.4-210.9,210.9c0,116.5,94.4,211,210.9,211c116.5,0,210.901-94.4,210.901-210.9c0-31.9-7.102-62.099-19.801-89.2l-1.699,1.7l-79.102,79.099c0.201,2.801,0.301,5.602,0.301,8.4c0,61.1-49.5,110.701-110.7,110.701c-61.2,0-110.601-49.602-110.601-110.701C319.889,463.5,369.489,413.9,430.589,413.9z"/><path d="M872.089,142.6l25.4-25.4c11.6-11.6,11.6-30.3,0-41.9l-17.602-17.7c-5.799-5.8-13.398-8.7-20.898-8.7s-15.201,2.9-20.9,8.7l-29.1,29.1l-6-77.5c-0.4-5.7-5.102-9.2-10-9.2c-2.5,0-5,0.9-7,2.9l-114.5,114.5c-10.301,10.3-15.602,24.6-14.5,39.2l0.299,4.5l5.5,71.7l-41.4,41.4l-74.5,74.5l-1.699,1.7l-72.1,72.101l-32,32c-4.2,4.199-6.8,9.8-7.2,15.699l-2,25.101c-1.2,14.6,10.4,27,24.9,27c0.399,0,0.8,0,1.3,0l26.5-1.301c6.199-0.301,12.1-2.9,16.4-7.301L532.689,482l72.1-72.1l1.701-1.7l74.5-74.5l45-45l65.398,5l2.9,0.2c1.301,0.1,2.6,0.1,3.801,0.1c13.199,0,25.9-5.2,35.4-14.6L947.888,165c6-6,2.201-16.4-6.299-17L872.089,142.6z"/></g></svg></svg></g></g><g transform="translate(41.27048873901367,0)"><g fill="#222222"><g transform="scale(1)"><g><path d="M3.17-9.86L3.17-13.39 7.09-13.39 7.09-9.86 3.17-9.86ZM7.1-6.7L7.1-3.17 3.17-3.17 3.17-6.7 7.1-6.7ZM7.84-16.56L0-16.56 0 0 7.84 0 10.26-2.43 10.26-7.41 9.4-8.25 10.26-9.12 10.26-14.12 7.84-16.56ZM20.46-16.56L12.04-16.56 12.04 0 20.46 0 20.46-3.17 15.21-3.17 15.21-6.7 19.4-6.7 19.4-9.86 15.21-9.86 15.21-13.39 20.46-13.39 20.46-16.56ZM31.53-16.56L22.23-16.56 22.23-13.39 25.29-13.39 25.29 0 28.46 0 28.46-13.39 31.53-13.39 31.53-16.56ZM42.6-16.56L33.3-16.56 33.3-13.39 36.36-13.39 36.36 0 39.53 0 39.53-13.39 42.6-13.39 42.6-16.56ZM52.79-16.56L44.37-16.56 44.37 0 52.79 0 52.79-3.17 47.55-3.17 47.55-6.7 51.74-6.7 51.74-9.86 47.55-9.86 47.55-13.39 52.79-13.39 52.79-16.56ZM61.67-13.39L61.67-9.46 57.74-9.46 57.74-13.39 61.67-13.39ZM62.4-16.56L54.57-16.56 54.57 0 57.74 0 57.74-6.3 61.67-6.3 61.67 0 64.83 0 64.83-7.41 63.97-8.25 64.83-9.12 64.83-14.12 62.4-16.56ZM83.5-16.56L81.99-7.62 79.79-16.56 76.85-16.56 74.66-7.62 73.14-16.56 69.87-16.56 72.58 0 76.31 0 78.33-8.84 80.32 0 84.06 0 86.77-16.56 83.5-16.56ZM91.47-10.51L92.62-5.99 90.25-5.99 91.47-10.51ZM88.64 0L89.4-2.82 93.42-2.82 94.14 0 97.3 0 93.1-16.56 89.93-16.56 85.47 0 88.64 0ZM104.11-16.56L101.31-9.77 98.67-16.56 95.53-16.56 99.68-5.91 99.68 0 102.85 0 102.85-5.91 107.25-16.56 104.11-16.56ZM115.8-16.56L110.39-16.56 107.96-14.12 107.96-9.12 110.33-6.7 115.06-6.7 115.06-3.17 111.13-3.17 111.13-5.65 107.96-5.65 107.96-2.43 110.39 0 115.8 0 118.22-2.43 118.22-7.41 117.36-8.25 117.37-8.26 115.74-9.86 111.13-9.86 111.13-13.39 115.06-13.39 115.06-10.92 118.22-10.92 118.22-14.12 115.8-16.56Z" transform="translate(0,16.559999465942383)"></path></g><g transform="translate(0,19.559999465942383)"><g transform="scale(1.00136)"><path d="M7.76-14.64L7.76-3.47 3.47-3.47 3.47-14.64 7.76-14.64ZM8.57-18.1L2.65-18.1 0-15.44 0-2.65 2.65 0 8.57 0 11.22-2.65 11.22-15.44 8.57-18.1ZM22.36-18.1L13.16-18.1 13.16 0 16.63 0 16.63-7.32 21.21-7.32 21.21-10.78 16.63-10.78 16.63-14.64 22.36-14.64 22.36-18.1ZM42.77-18.1L41.11-8.33 38.72-18.1 35.5-18.1 33.1-8.33 31.45-18.1 27.87-18.1 30.84 0 34.91 0 37.11-9.67 39.29 0 43.38 0 46.34-18.1 42.77-18.1ZM55.4-14.64L55.4-3.47 51.1-3.47 51.1-14.64 55.4-14.64ZM56.2-18.1L50.29-18.1 47.64-15.44 47.64-2.65 50.29 0 56.2 0 58.85-2.65 58.85-15.44 56.2-18.1ZM68.56-14.64L68.56-10.34 64.26-10.34 64.26-14.64 68.56-14.64ZM69.36-18.1L60.8-18.1 60.8 0 64.26 0 64.26-6.88 68.56-6.88 68.56 0 72.02 0 72.02-8.1 71.07-9.02 72.02-9.96 72.02-15.44 69.36-18.1ZM85.6-18.1L81.73-18.1 77.42-10.57 77.42-18.1 73.96-18.1 73.96 0 77.42 0 77.42-7.52 81.73 0 85.6 0 80.41-9.05 85.6-18.1ZM87.54-18.1L87.54 0 91.01 0 91.01-18.1 87.54-18.1ZM101.43-18.1L101.43-7.79 96.85-18.1 92.95-18.1 92.95 0 96.42 0 96.42-10.31 101 0 104.9 0 104.9-18.1 101.43-18.1ZM115.41-18.1L109.49-18.1 106.84-15.44 106.84-2.65 109.49 0 115.41 0 118.06-2.65 118.06-10.78 112.61-10.78 112.61-7.32 114.6-7.32 114.6-3.47 110.31-3.47 110.31-14.64 114.6-14.64 114.6-11.93 118.06-11.93 118.06-15.44 115.41-18.1Z" transform="translate(0,18.100000381469727)"></path></g></g></g></g></g></g></svg>
     </a>
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="resources.html" class="nav-link">Insights</a>
-      <a href="#book" class="nav-link">The Book</a>
+    <nav>
+      <a href="about.html">About</a>
+      <a href="resources.html">Insights</a>
+      <a href="#inside">Inside the Book</a>
+      <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="nav-cta">Get Notified →</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="badge">Writing in Progress</div>
-        <h1>Sanity at Scale.</h1>
-        <p class="hero-subtitle">
-          The leader’s guide to high-velocity delivery without the chaos. Join the <strong>Live Book Draft</strong> and help shape the future of modern work.
-        </p>
-        <div class="hero-ctas">
-          <a href="live-draft.html" class="btn btn-primary">Follow the Live Draft</a>
-          <a href="about.html" class="btn btn-secondary">About the Approach</a>
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow fu d1">Launches June 26 · For Leaders of Scaling Teams</div>
+        <div class="hero-rule fu d2"></div>
+        <h1 class="fu d2">Stop scaling<br><span>the chaos.</span></h1>
+        <p class="hero-sub fu d3">Your team is busy. Your backlog is full. And somehow, nothing important is getting done. <em>Sanity at Scale</em> is the no-nonsense manual for leaders who are done pretending more process is the answer. Launching June 26 — subscribe to be notified the moment it's available.</p>
+        <div class="hero-ctas fu d4">
+          <a href="https://betterwaysofworking.com/sanity-audit.pdf" target="_blank" rel="noopener" class="btn btn-teal">
+            Free Download: The Sanity Audit →
+          </a>
+          <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="btn btn-ghost">Notify me at launch</a>
         </div>
+        <p style="font-size:0.78rem; color:var(--muted); margin-top:10px;">Free 1-page PDF &nbsp;·&nbsp; No email required &nbsp;·&nbsp; Use it in your next meeting</p>
       </div>
-    </section>
-
-    <!-- Book Feature -->
-    <section id="book">
-      <div class="container">
-        <div class="book-spotlight">
-          <div class="book-content">
-            <span class="badge">New Book Release</span>
-            <h2>Sanity at Scale</h2>
-            <p>Scaling a team shouldn't mean scaling the chaos. This book provides a practical roadmap for leaders to build high-flow environments that deliver value without burning people out.</p>
-            <div style="margin-bottom: 32px;">
-              <ul class="check-list">
-                <li style="color: var(--text)">Weekly live draft updates</li>
-                <li style="color: var(--text)">Early access to frameworks & habits</li>
-                <li style="color: var(--text)">Exclusive community discussions</li>
-              </ul>
-            </div>
-            <a href="live-draft.html" class="btn btn-primary">Read the Live Draft</a>
-          </div>
-          <div class="book-visual">
-             <div style="font-weight: 800; font-size: 1.5rem; color: #fff; margin-bottom: 10px; text-align: center;">SANITY AT SCALE</div>
-             <div style="width: 40px; height: 2px; background: var(--accent); margin-bottom: 10px;"></div>
-             <div style="font-size: 0.75rem; color: var(--muted); text-align: center; letter-spacing: 2px;">THE LEADER'S GUIDE TO FLOW</div>
-          </div>
-        </div>
+      <div class="book-wrap fu d5">
+        <img class="book-img" src="sanity-at-scale-front-cover.png" alt="Sanity at Scale by Dave Borzillo">
       </div>
-    </section>
-
-    <!-- The Problem Statement -->
-    <section class="stakes-section">
-      <div class="container">
-        <div class="badge">The Foundation</div>
-        <h2>Is your team trapped in accidental complexity?</h2>
-        <p>Most organizations confuse "being busy" with "being effective." As complexity grows, decision-making stalls, and your best talent burns out. <strong>Sanity at Scale</strong> solves this by refocusing on the core principles of Better Ways of Working.</p>
-      </div>
-    </section>
-
-    <!-- The Plan -->
-    <section style="padding: 100px 0;">
-      <div class="container">
-        <h2 style="text-align: center; margin-bottom: 12px;">Core Principles of the Book</h2>
-        <p style="text-align: center; color: var(--muted); margin-bottom: 40px;">Frameworks you can apply today, even before the final print.</p>
-        <div class="steps-grid">
-          <div class="step-item">
-            <div class="step-num">1</div>
-            <h3>Clarity First</h3>
-            <p>Learn how to eliminate ambiguity so every team member knows exactly where to focus.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num">2</div>
-            <h3>Intentional Flow</h3>
-            <p>Habits that remove bureaucracy and keep work moving toward real outcomes.</p>
-          </div>
-          <div class="step-item">
-            <div class="step-num">3</div>
-            <h3>Scaled Impact</h3>
-            <p>The infrastructure needed to grow your organization without losing your sanity.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Transformation -->
-    <section style="background: var(--surface); padding: 100px 0;">
-      <div class="container">
-        <div class="badge" style="display: table; margin: 0 auto 20px;">The Outcome</div>
-        <h2 style="text-align: center;">The "Sanity" Transformation</h2>
-        <div class="transformation-grid">
-          <div class="transform-card card-red">
-            <h3>The Current Chaos</h3>
-            <ul class="check-list">
-              <li>Endless meetings with no decisions</li>
-              <li>Talent leaving due to friction</li>
-              <li>"Agile" that feels like more work</li>
-              <li>Vanity metrics over actual value</li>
-            </ul>
-          </div>
-          <div class="transform-card card-blue">
-            <h3>Sanity at Scale</h3>
-            <ul class="check-list">
-              <li>Meetings that actually matter</li>
-              <li>High-engagement & talent retention</li>
-              <li>Habits that create sustainable velocity</li>
-              <li>Outcome-driven delivery engines</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section style="padding: 100px 0; text-align: center;">
-      <div class="container">
-        <h3>Don't wait for the final release.</h3>
-        <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.1rem;">Follow the journey and start implementing these ways of working today.</p>
-        <a href="resources.html" class="btn btn-secondary">Explore Insights</a>
-        <a href="live-draft.html" class="btn btn-primary" style="margin-left: 10px;">Get Draft Updates</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Better Ways of Working. All rights reserved.</p>
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <div class="proof-num">3</div>
+      <div class="proof-label">Books<br>Published</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">RST</div>
+      <div class="proof-label">Registered<br>Scrum Trainer</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">20+</div>
+      <div class="proof-label">Years in<br>Practice</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">100s</div>
+      <div class="proof-label">Teams<br>Transformed</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="eyebrow-neutral">Sound familiar?</div>
+    <h2 class="section h2">Your organization grew.<br><span>So did the chaos.</span></h2>
+    <p class="lead">Scaling teams shouldn't mean scaling dysfunction. But most organizations accidentally build complexity into every layer — and then wonder why nothing ships fast anymore.</p>
+    <div class="symptoms-grid">
+      <div class="symptom">
+        <strong>Backlog bankruptcy</strong>
+        <p>Hundreds of items, none force-ranked, most over 6 months old and completely irrelevant.</p>
+      </div>
+      <div class="symptom">
+        <strong>Endless meetings, no decisions</strong>
+        <p>Calendars are packed. Actual forward progress is not.</p>
+      </div>
+      <div class="symptom">
+        <strong>You've become the constraint</strong>
+        <p>If you're indispensable, you're the bottleneck. Your best people already know it.</p>
+      </div>
+      <div class="symptom">
+        <strong>"Agile" that created more process</strong>
+        <p>Ceremonies without clarity. Velocity without direction. Burnout with a framework name on it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="eyebrow-neutral">The shift</div>
+    <h2>What changes when you work this way.</h2>
+    <p class="lead">The difference between a team that's busy and a team that's effective isn't effort — it's system design.</p>
+    <div class="transform-grid">
+      <div class="transform-col transform-col-before">
+        <h3><span class="t-tag t-tag-before">Before</span> The Current Chaos</h3>
+        <ul class="t-list">
+          <li><span class="t-icon t-x">✕</span>Backlog with 300 items, none prioritized, all "important"</li>
+          <li><span class="t-icon t-x">✕</span>Endless meetings with no decisions and no follow-through</li>
+          <li><span class="t-icon t-x">✕</span>Top talent burning out from friction, not from hard work</li>
+          <li><span class="t-icon t-x">✕</span>An Agile transformation that somehow created more process</li>
+          <li><span class="t-icon t-x">✕</span>Leaders who can't say no and become the bottleneck</li>
+        </ul>
+      </div>
+      <div class="transform-col transform-col-after">
+        <h3><span class="t-tag t-tag-after">After</span> Sanity at Scale</h3>
+        <ul class="t-list">
+          <li><span class="t-icon t-c">✓</span>A top-5 priority list everyone understands and executes against</li>
+          <li><span class="t-icon t-c">✓</span>Meetings that produce real decisions and leave people energized</li>
+          <li><span class="t-icon t-c">✓</span>High-engagement teams where your best people choose to stay</li>
+          <li><span class="t-icon t-c">✓</span>Lightweight habits that create sustainable, repeatable velocity</li>
+          <li><span class="t-icon t-c">✓</span>Leaders who delegate, automate, and protect what matters most</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="testimonial-wrap">
+      <div class="eyebrow" style="color:rgba(255,255,255,0.3);">Early readers are saying</div>
+      <p class="testimonial-quote">
+        "This is not a fluffy, touchy-feely book — we have plenty of those, and they are useless. It is a <strong>manual for industrial execution.</strong> It cuts through the noise of Agile buzzwords and snowflake nonsense. Start with Chapter 4 and Chapter 6. Make those critical changes today."
+      </p>
+      <div class="testimonial-attr">
+        <div class="attr-rule"></div>
+        <div class="attr-text">Luiz "Q" Quintela &nbsp;·&nbsp; Raskere</div>
+      </div>
+      <div class="chapter-pills">
+        <div class="chapter-pill"><strong>Start here:</strong> Radical Simplification (Backlog Bankruptcy)</div>
+        <div class="chapter-pill"><strong>Then:</strong> The Myth of "High, Medium, Low"</div>
+      </div>
+
+      <div class="beta-grid">
+        <div class="beta-card">
+          <div class="beta-chapter">The Hero Trap</div>
+          <p class="beta-quote">"This is an excellent start. You quickly identify the problem and give some excellent examples of what happens in the long run. I have seen all of these play out far too many times."</p>
+          <div class="beta-attr">Engineering Leader, Beta Reader</div>
+        </div>
+        <div class="beta-card">
+          <div class="beta-chapter">Introduction</div>
+          <p class="beta-quote">"I literally did a mental sigh of relief when I read this paragraph. Thank you for being so real and transparent — it is refreshing."</p>
+          <div class="beta-attr">Agile Practitioner, Beta Reader</div>
+        </div>
+        <div class="beta-card">
+          <div class="beta-chapter">The Hero Trap</div>
+          <p class="beta-quote">"Smiling as I read this — I am away from the office for 2 weeks and noticed where my own role was a bottleneck. Took the opportunity to knowledge share and document who our secondary admin is."</p>
+          <div class="beta-attr">Operations Leader, Beta Reader</div>
+        </div>
+        <div class="beta-card">
+          <div class="beta-chapter">The Process Paradox</div>
+          <p class="beta-quote">"This whole chapter resonates. I have definitely been guilty of some of it — though also proud to say more recently evolved into fixing the root cause without the extra checks."</p>
+          <div class="beta-attr">Product Manager, Beta Reader</div>
+        </div>
+        <div class="beta-card">
+          <div class="beta-chapter">Introduction</div>
+          <p class="beta-quote">"Definitely resonates. Also really hard to pull back from..."</p>
+          <div class="beta-attr">Product Manager, Beta Reader</div>
+        </div>
+        <div class="beta-card">
+          <div class="beta-chapter">The Hero Trap</div>
+          <p class="beta-quote">"The 'send your hero on vacation to build your list of issues to address' exercise is a great idea. I have seen all of these patterns play out far too many times."</p>
+          <div class="beta-attr">Engineering Leader, Beta Reader</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CHAPTERS -->
+<section class="section" id="inside">
+  <div class="container">
+    <div class="eyebrow-neutral">Inside the book</div>
+    <h2>A manual, not a manifesto.</h2>
+    <p class="lead">Every chapter delivers a specific, actionable fix for a real organizational problem. No fluff. No theory for its own sake.</p>
+    <div class="chapters-grid">
+      <div class="chapter-card">
+        <div class="ch-num">Part I — Ch. 1</div>
+        <h3>The Hero Trap</h3>
+        <p>Why your best people are hiding your broken processes — and how heroism creates single points of failure, burnout, and systemic rot.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part I — Ch. 2</div>
+        <h3>The Process Paradox</h3>
+        <p>How we built a bureaucracy to manage the heroes. Process as scar tissue — and the algorithm for simplification.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part I — Ch. 3</div>
+        <h3>The Dependency Web</h3>
+        <p>The three types of death-by-dependency: legacy anchors, guru bottlenecks, and permission gates.</p>
+      </div>
+      <div class="chapter-card featured">
+        <div class="ch-tag">Reader Favorite</div>
+        <div class="ch-num">Part II — Ch. 4</div>
+        <h3>Radical Simplification</h3>
+        <p>Declare bankruptcy on your backlog. Apply the Value Litmus Test. Build a survival list that actually survives.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part II — Ch. 5</div>
+        <h3>The Value Litmus Test</h3>
+        <p>If you can't measure the outcome, don't start the effort. Four questions that cut through the output trap.</p>
+      </div>
+      <div class="chapter-card featured">
+        <div class="ch-tag">Reader Favorite</div>
+        <div class="ch-num">Part II — Ch. 6</div>
+        <h3>The Myth of "High, Medium, Low"</h3>
+        <p>Buckets fail. Ordered lists save sanity. Weighted scoring, WSJF, and the "Above the Line" rule.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part II — Ch. 7</div>
+        <h3>Visualizing the Invisible</h3>
+        <p>The stealth saboteur is dark work. Three laws of visualization that replace interrogation with observation.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part II — Ch. 8</div>
+        <h3>The Art of the Hard No</h3>
+        <p>The shield vs. the filter. The political capital ledger. Practical scripts for protecting focus in a world of yes.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part III — Ch. 9</div>
+        <h3>The Sanity Habit &amp; High-Stakes Sync</h3>
+        <p>From heroic leader to Strategic Pilot. The Daily Flight Check and the self-correcting team.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part IV — Ch. 10</div>
+        <h3>The Anti-Hero Leader</h3>
+        <p>The identity shift that changes everything. The Beekeeper vs. The Shepherd — and why letting the ball drop builds a stronger team.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Part IV — Ch. 11</div>
+        <h3>Team Mechanics for Industrial Execution</h3>
+        <p>The Black Box Protocol, the Five Whys, and the Event Chain — for teams that learn from failure instead of hiding it.</p>
+      </div>
+      <div class="chapter-card">
+        <div class="ch-num">Closing</div>
+        <h3>The Sustainable Pace</h3>
+        <p>A career you can survive. A life you can enjoy. What it looks like when the system finally works without you holding it together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDE -->
+<section class="section">
+  <div class="container">
+    <div class="guide-grid">
+      <div>
+        <div class="guide-photo">
+          <img src="Borzillo_Headshot.png" alt="Dave Borzillo"
+            onerror="this.parentNode.innerHTML='<div class=\'guide-photo-fallback\'>Dave Borzillo</div>'">
+        </div>
+        <div class="creds">
+          <div class="cred"><span class="cred-dot"></span>Registered Scrum Trainer</div>
+          <div class="cred"><span class="cred-dot"></span>Agile Coach</div>
+          <div class="cred"><span class="cred-dot"></span>Author · United Agility · Who Killed Agile?</div>
+        </div>
+      </div>
+      <div class="guide-content">
+        <div class="eyebrow-neutral">About the author</div>
+        <h2>He used to be the hero. That's how he knows it doesn't work.</h2>
+        <p>Over a decade ago, Dave Borzillo was waking up at 4am to answer calls no one else would answer. He told himself it was dedication. What it actually was: a system that had made one person indispensable — and that person was him.</p>
+        <p>That moment is where <em>Sanity at Scale</em> began. Not in a boardroom or a consulting engagement, but in the exhausting realization that being the hero wasn't leadership. It was a trap. And the only way out was to stop solving everything for everyone and start building a system that didn't need a hero at all.</p>
+        <p>As a Registered Scrum Trainer and author of <em>United Agility</em> and <em>Who Killed Agile?</em>, Dave has spent two decades helping leaders make the same shift — from indispensable to irreplaceable, from firefighter to Strategic Pilot.</p>
+        <div class="pull-quote">
+          <p>"I was the constraint in my own organization. This book is what I wish someone had handed me then."</p>
+        </div>
+        <a href="about.html" class="btn btn-ghost">More about Dave →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY -->
+<section class="section section-dark buy-section">
+  <div class="container">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.3); display:block; text-align:center; margin-bottom:16px;">Available June 26 · Get notified first</div>
+    <h2>The chaos is costing you more than you think.</h2>
+    <p>Every week without clarity is a week of your best people's energy wasted. Subscribe on Substack and you'll be the first to know when it drops on June 26.</p>
+    <div class="buy-ctas">
+      <a href="https://betterwaysofworking.com/sanity-audit.pdf" target="_blank" rel="noopener" class="btn btn-white" style="font-size:1rem; padding:16px 32px;">
+        Free Download: The Sanity Audit →
+      </a>
+      <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="btn btn-outline-white" style="font-size:1rem; padding:16px 32px;">
+        Notify me at launch
+      </a>
+    </div>
+    <p style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-top:14px;">Free 1-page PDF &nbsp;·&nbsp; No email required &nbsp;·&nbsp; Launches June 26</p>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Better Ways of Working. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="resources.html">Insights</a>
+        <a href="https://bwow.substack.com" target="_blank" rel="noopener">Get Notified</a>
+        <a href="mailto:dave@betterwaysofworking.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

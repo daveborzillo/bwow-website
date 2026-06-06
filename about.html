@@ -1,272 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me | Better Ways of Working</title>
-  <style>
-    /* Better Ways of Working Stylesheet - Unified with Homepage */
-    :root {
-      --bg: #0b0f14;
-      --surface: #111820;
-      --card: #151e28;
-      --text: #e8eef5;
-      --muted: #a8b3c2;
-      --accent: #7dd3fc;
-      --border: #243041;
-      --brand-gradient: linear-gradient(135deg, #60a5fa, #7dd3fc);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About Dave Borzillo | Better Ways of Working</title>
+<meta name="description" content="Dave Borzillo is a Registered Scrum Trainer, agile coach, and author helping knowledge workers find simpler, more effective ways of working." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0a0c10;
+  --paper:     #f8f8f6;
+  --white:     #ffffff;
+  --teal:      #1a7a6e;
+  --teal-dark: #145f55;
+  --teal-muted:#e8f4f2;
+  --red:       #c0392b;
+  --red-muted: #fdf1f0;
+  --muted:     #5c5f66;
+  --subtle:    #8a8d94;
+  --border:    #e2e2de;
+  --border-strong: #c8c8c2;
+  --amazon:    #FF9900;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
-    * { box-sizing: border-box; }
+/* NAV */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(248,248,246,0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px;
+  max-width: 1080px; margin: 0 auto;
+}
+nav { display: flex; gap: 28px; align-items: center; }
+nav a { font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+nav a:hover, nav a.active { color: var(--ink); }
+.nav-cta {
+  background: var(--amazon); color: var(--ink) !important;
+  padding: 8px 18px; border-radius: 3px;
+  font-weight: 700 !important; font-size: 0.82rem !important;
+  letter-spacing: 0.02em; transition: background 0.15s !important;
+}
+.nav-cta:hover { background: #e68900 !important; }
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-    }
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: 3px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  cursor: pointer; transition: all 0.18s;
+}
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
+.btn-ghost:hover { border-color: var(--ink); }
+.btn-outline-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.25); }
+.btn-outline-white:hover { border-color: rgba(255,255,255,0.6); }
 
-    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
-    a:hover { opacity: 0.8; }
+/* EYEBROW */
+.eyebrow {
+  display: inline-block;
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 16px;
+}
+.eyebrow-neutral {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--subtle); margin-bottom: 14px;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+/* HERO */
+.about-hero {
+  padding: 80px 0 72px;
+  border-bottom: 1px solid var(--border);
+}
+.about-hero-grid {
+  display: grid; grid-template-columns: 340px 1fr;
+  gap: 72px; align-items: start;
+}
+.about-photo {
+  aspect-ratio: 4/5; overflow: hidden;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  box-shadow: 6px 6px 0 var(--border);
+}
+.about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.creds { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
+.cred {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 3px; padding: 7px 12px;
+  font-size: 0.78rem; font-weight: 600; color: var(--ink);
+}
+.cred-dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; flex-shrink: 0; }
+.about-content h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900; letter-spacing: -0.04em;
+  line-height: 1.05; margin-bottom: 8px;
+}
+.about-rule { width: 36px; height: 3px; background: var(--teal); margin-bottom: 20px; }
+.about-content .lead {
+  font-size: 1.15rem; color: var(--muted);
+  max-width: 52ch; line-height: 1.7; margin-bottom: 16px;
+}
+.about-content p {
+  font-size: 0.975rem; color: var(--muted);
+  max-width: 54ch; line-height: 1.7; margin-bottom: 14px;
+}
+.pull-quote {
+  margin: 28px 0; padding: 20px 24px;
+  border-left: 3px solid var(--teal);
+  background: var(--teal-muted);
+}
+.pull-quote p {
+  font-size: 0.975rem; font-weight: 600;
+  color: var(--ink); font-style: italic; margin: 0;
+}
+.about-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 
-    /* --- Navigation --- */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 40px;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(11, 15, 20, 0.85);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-    }
+/* SECTION */
+.section { padding: 80px 0; }
+.section-alt { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.section-dark { background: var(--ink); }
+.section h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1.1; margin-bottom: 40px;
+}
+.section h2 span { color: var(--teal); }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      font-weight: 800;
-      font-size: 1.2rem;
-      letter-spacing: -0.5px;
-      color: var(--text);
-    }
+/* WHAT I DO */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.service-card {
+  padding: 28px 24px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--teal);
+  border-radius: 0 0 3px 3px;
+}
+.service-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 10px; }
+.service-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.service-tag {
+  display: inline-block;
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--teal); border: 1px solid var(--teal);
+  padding: 2px 8px; border-radius: 2px;
+}
 
-    .logo img { height: 60px; width: auto; display: block; }
+/* BOOKS */
+.books-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.book-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 3px; overflow: hidden;
+}
+.book-card-spine { height: 4px; background: var(--teal); }
+.book-card-body { padding: 22px 20px; }
+.book-num {
+  font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--subtle); margin-bottom: 8px;
+}
+.book-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
+.book-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
 
-    .logo-text {
-      background: var(--brand-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-left: 2px;
-    }
+/* SPEAKING */
+.speaking-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+}
+.talk-list { display: flex; flex-direction: column; gap: 16px; }
+.talk {
+  padding: 20px 22px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 3px 3px 0;
+}
+.talk h3 { font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.talk p { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.55; }
+.speaking-cta-box { padding: 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 3px; }
+.speaking-cta-box h3 { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 12px; letter-spacing: -0.02em; }
+.speaking-cta-box p { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 24px; }
+.contact-line { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.contact-line a { font-size: 0.875rem; color: #6ee7b7; font-weight: 600; }
+.contact-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); width: 60px; flex-shrink: 0; }
 
-    .main-nav {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
+/* FOOTER */
+footer { background: var(--paper); border-top: 1px solid var(--border); padding: 28px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 0.82rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
+.footer-links a:hover { color: var(--ink); }
+.footer-copy { font-size: 0.78rem; color: var(--subtle); }
 
-    .nav-link {
-      font-weight: 500;
-      color: var(--text);
-      font-size: 0.95rem;
-    }
-
-    .cta-nav {
-      padding: 8px 18px;
-      border-radius: 8px;
-      background: var(--brand-gradient);
-      color: #06101a !important;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* --- About Layout --- */
-    .about-section {
-      padding: 80px 0;
-    }
-
-    .about-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-
-    .about-header h1 {
-      font-size: clamp(32px, 5vw, 48px);
-      margin-bottom: 10px;
-    }
-
-    .about-header .subtitle {
-      color: var(--muted);
-      font-size: 1.2rem;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 60px;
-      align-items: start;
-    }
-
-    .about-photo img {
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    }
-
-    .about-content h2 {
-      font-size: 1.8rem;
-      margin: 40px 0 20px;
-      color: var(--accent);
-    }
-
-    .about-content h2:first-child { margin-top: 0; }
-
-    .about-content p {
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-      color: var(--text);
-      opacity: 0.9;
-    }
-
-    .about-content ul {
-      padding-left: 20px;
-      margin-bottom: 30px;
-    }
-
-    .about-content li {
-      margin-bottom: 12px;
-      color: var(--muted);
-    }
-
-    .about-content strong {
-      color: var(--text);
-    }
-
-    /* --- Call to Action --- */
-    .about-cta {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 80px 0;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 14px 28px;
-      border-radius: 10px;
-      background: var(--brand-gradient);
-      color: #06101a;
-      font-weight: 700;
-      margin-top: 20px;
-    }
-
-    footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
-
-    @media (max-width: 900px) {
-      header { padding: 15px 20px; flex-direction: column; gap: 15px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .about-photo { max-width: 300px; margin: 0 auto; }
-      .about-section { padding: 40px 0; }
-    }
-  </style>
+/* RESPONSIVE */
+@media (max-width: 880px) {
+  .about-hero-grid { grid-template-columns: 1fr; }
+  .about-photo { max-width: 320px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .books-grid { grid-template-columns: 1fr; }
+  .speaking-grid { grid-template-columns: 1fr; }
+  .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 32px; gap: 10px; }
+  nav { flex-wrap: wrap; gap: 16px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
 </head>
 <body>
 
-  <header>
-    <a class="logo" href="index.html">
-      <img src="logo-bwow.png" alt="Better Ways of Working" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-      <span style="display:none">Better <span class="logo-text">Ways of Working</span></span>
+<header>
+  <div class="nav-inner">
+    <a href="index.html" aria-label="Better Ways of Working">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="88.65956024169923 104.56278137207032 162.68087951660155 40.87443725585938" height="34" preserveAspectRatio="xMidYMid meet" color-interpolation-filters="sRGB" style="display:block;width:auto;"><g><defs><filter id="logo-f"><feColorMatrix type="matrix" values="0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 0 0.1328125  0 0 0 1 0"></feColorMatrix></filter></defs><g fill="#222222" transform="translate(90.25447082519531,106.1576919555664)"><g transform="translate(0,1.6280498504638672)"><g><rect fill="#222222" fill-opacity="0" x="0" y="0" width="34.270488738281244" height="34.428515624999996"></rect><svg filter="url(#logo-f)" x="0" y="0" width="34.270488738281244" height="34.428515624999996" style="overflow:visible;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="2.188 0 948.623 953"><g><path d="M430.589,953c236.6,0,428.401-191.801,428.401-428.4c0-72.799-18.102-141.299-50.102-201.299c-3.5,0.5-7.1,0.7-10.6,0.7c-2,0-4.1-0.1-6.199-0.2l-54.5-4.2l-39.201,39.2c29.9,48.2,47.201,105,47.201,165.799c0,173.9-141,314.9-314.901,314.9c-173.899,0-315-141-315-314.9c0-173.899,141-314.899,314.9-314.899c60.901,0,117.7,17.3,165.799,47.2l35.5-35.5l-4.799-62.5c-0.4-5-0.301-10,0.199-14.9c-58.9-30.5-125.799-47.8-196.799-47.8c-236.5,0-428.3,191.8-428.3,428.399S193.989,953,430.589,953z"/><path d="M430.589,413.9c2.8,0,5.6,0.101,8.4,0.3l79.1-79.1l1.699-1.7c-27.1-12.7-57.299-19.8-89.2-19.8c-116.5,0-210.9,94.4-210.9,210.9c0,116.5,94.4,211,210.9,211c116.5,0,210.901-94.4,210.901-210.9c0-31.9-7.102-62.099-19.801-89.2l-1.699,1.7l-79.102,79.099c0.201,2.801,0.301,5.602,0.301,8.4c0,61.1-49.5,110.701-110.7,110.701c-61.2,0-110.601-49.602-110.601-110.701C319.889,463.5,369.489,413.9,430.589,413.9z"/><path d="M872.089,142.6l25.4-25.4c11.6-11.6,11.6-30.3,0-41.9l-17.602-17.7c-5.799-5.8-13.398-8.7-20.898-8.7s-15.201,2.9-20.9,8.7l-29.1,29.1l-6-77.5c-0.4-5.7-5.102-9.2-10-9.2c-2.5,0-5,0.9-7,2.9l-114.5,114.5c-10.301,10.3-15.602,24.6-14.5,39.2l0.299,4.5l5.5,71.7l-41.4,41.4l-74.5,74.5l-1.699,1.7l-72.1,72.101l-32,32c-4.2,4.199-6.8,9.8-7.2,15.699l-2,25.101c-1.2,14.6,10.4,27,24.9,27c0.399,0,0.8,0,1.3,0l26.5-1.301c6.199-0.301,12.1-2.9,16.4-7.301L532.689,482l72.1-72.1l1.701-1.7l74.5-74.5l45-45l65.398,5l2.9,0.2c1.301,0.1,2.6,0.1,3.801,0.1c13.199,0,25.9-5.2,35.4-14.6L947.888,165c6-6,2.201-16.4-6.299-17L872.089,142.6z"/></g></svg></svg></g></g><g transform="translate(41.27048873901367,0)"><g fill="#222222"><g transform="scale(1)"><g><path d="M3.17-9.86L3.17-13.39 7.09-13.39 7.09-9.86 3.17-9.86ZM7.1-6.7L7.1-3.17 3.17-3.17 3.17-6.7 7.1-6.7ZM7.84-16.56L0-16.56 0 0 7.84 0 10.26-2.43 10.26-7.41 9.4-8.25 10.26-9.12 10.26-14.12 7.84-16.56ZM20.46-16.56L12.04-16.56 12.04 0 20.46 0 20.46-3.17 15.21-3.17 15.21-6.7 19.4-6.7 19.4-9.86 15.21-9.86 15.21-13.39 20.46-13.39 20.46-16.56ZM31.53-16.56L22.23-16.56 22.23-13.39 25.29-13.39 25.29 0 28.46 0 28.46-13.39 31.53-13.39 31.53-16.56ZM42.6-16.56L33.3-16.56 33.3-13.39 36.36-13.39 36.36 0 39.53 0 39.53-13.39 42.6-13.39 42.6-16.56ZM52.79-16.56L44.37-16.56 44.37 0 52.79 0 52.79-3.17 47.55-3.17 47.55-6.7 51.74-6.7 51.74-9.86 47.55-9.86 47.55-13.39 52.79-13.39 52.79-16.56ZM61.67-13.39L61.67-9.46 57.74-9.46 57.74-13.39 61.67-13.39ZM62.4-16.56L54.57-16.56 54.57 0 57.74 0 57.74-6.3 61.67-6.3 61.67 0 64.83 0 64.83-7.41 63.97-8.25 64.83-9.12 64.83-14.12 62.4-16.56ZM83.5-16.56L81.99-7.62 79.79-16.56 76.85-16.56 74.66-7.62 73.14-16.56 69.87-16.56 72.58 0 76.31 0 78.33-8.84 80.32 0 84.06 0 86.77-16.56 83.5-16.56ZM91.47-10.51L92.62-5.99 90.25-5.99 91.47-10.51ZM88.64 0L89.4-2.82 93.42-2.82 94.14 0 97.3 0 93.1-16.56 89.93-16.56 85.47 0 88.64 0ZM104.11-16.56L101.31-9.77 98.67-16.56 95.53-16.56 99.68-5.91 99.68 0 102.85 0 102.85-5.91 107.25-16.56 104.11-16.56ZM115.8-16.56L110.39-16.56 107.96-14.12 107.96-9.12 110.33-6.7 115.06-6.7 115.06-3.17 111.13-3.17 111.13-5.65 107.96-5.65 107.96-2.43 110.39 0 115.8 0 118.22-2.43 118.22-7.41 117.36-8.25 117.37-8.26 115.74-9.86 111.13-9.86 111.13-13.39 115.06-13.39 115.06-10.92 118.22-10.92 118.22-14.12 115.8-16.56Z" transform="translate(0,16.559999465942383)"></path></g><g transform="translate(0,19.559999465942383)"><g transform="scale(1.00136)"><path d="M7.76-14.64L7.76-3.47 3.47-3.47 3.47-14.64 7.76-14.64ZM8.57-18.1L2.65-18.1 0-15.44 0-2.65 2.65 0 8.57 0 11.22-2.65 11.22-15.44 8.57-18.1ZM22.36-18.1L13.16-18.1 13.16 0 16.63 0 16.63-7.32 21.21-7.32 21.21-10.78 16.63-10.78 16.63-14.64 22.36-14.64 22.36-18.1ZM42.77-18.1L41.11-8.33 38.72-18.1 35.5-18.1 33.1-8.33 31.45-18.1 27.87-18.1 30.84 0 34.91 0 37.11-9.67 39.29 0 43.38 0 46.34-18.1 42.77-18.1ZM55.4-14.64L55.4-3.47 51.1-3.47 51.1-14.64 55.4-14.64ZM56.2-18.1L50.29-18.1 47.64-15.44 47.64-2.65 50.29 0 56.2 0 58.85-2.65 58.85-15.44 56.2-18.1ZM68.56-14.64L68.56-10.34 64.26-10.34 64.26-14.64 68.56-14.64ZM69.36-18.1L60.8-18.1 60.8 0 64.26 0 64.26-6.88 68.56-6.88 68.56 0 72.02 0 72.02-8.1 71.07-9.02 72.02-9.96 72.02-15.44 69.36-18.1ZM85.6-18.1L81.73-18.1 77.42-10.57 77.42-18.1 73.96-18.1 73.96 0 77.42 0 77.42-7.52 81.73 0 85.6 0 80.41-9.05 85.6-18.1ZM87.54-18.1L87.54 0 91.01 0 91.01-18.1 87.54-18.1ZM101.43-18.1L101.43-7.79 96.85-18.1 92.95-18.1 92.95 0 96.42 0 96.42-10.31 101 0 104.9 0 104.9-18.1 101.43-18.1ZM115.41-18.1L109.49-18.1 106.84-15.44 106.84-2.65 109.49 0 115.41 0 118.06-2.65 118.06-10.78 112.61-10.78 112.61-7.32 114.6-7.32 114.6-3.47 110.31-3.47 110.31-14.64 114.6-14.64 114.6-11.93 118.06-11.93 118.06-15.44 115.41-18.1Z" transform="translate(0,18.100000381469727)"></path></g></g></g></g></g></g></svg>
     </a>
-    <nav class="main-nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="about.html" class="nav-link" style="color: var(--accent);">About</a>
-      <a href="https://courses.betterwaysofworking.com/agile-team-flow-ai-readiness-blueprint" class="nav-link">Free Blueprint</a>
-      <a href="resources.html" class="nav-link">Insights</a>
-      <a href="https://courses.betterwaysofworking.com" class="cta-nav">Courses</a>
+    <nav>
+      <a href="about.html" class="active">About</a>
+      <a href="resources.html">Insights</a>
+      <a href="books.html">Books</a>
+      <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="nav-cta">Get Notified →</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <main>
-    <section class="about-section">
-      <div class="container">
-        <div class="about-header">
-          <h1>Meet the Founder</h1>
-          <p class="subtitle">I'm <strong>Dave Borzillo</strong>, helping you move from frustration to momentum.</p>
+<main>
+
+<!-- HERO -->
+<section class="about-hero">
+  <div class="container">
+    <div class="about-hero-grid">
+      <div>
+        <div class="about-photo">
+          <img src="Borzillo_Headshot.png" alt="Dave Borzillo"
+            onerror="this.parentNode.style.background='#e8e8e4'">
         </div>
-
-        <div class="about-grid">
-          <aside class="about-photo">
-            <img src="BorzilloHeadshot.jpg" alt="Dave Borzillo" onerror="this.src='https://via.placeholder.com/320x400?text=Dave+Borzillo'">
-          </aside>
-
-          <section class="about-content">
-            <p>
-              I help leaders, teams, and organizations discover practical, modern
-              approaches to collaboration, communication, and getting meaningful
-              work done.
-            </p>
-
-            <p>
-              For more than a decade, I’ve coached executives, guided complex
-              transformations, and led teams recognized as internal disruptors inside Fortune 500
-              companies. My work blends Agile, Lean, facilitation, leadership development, and systems thinking into clear,
-              actionable methods.
-            </p>
-
-            <h2>What I Do</h2>
-            <ul>
-              <li><strong>Advise</strong> leaders and teams to collaborate more effectively</li>
-              <li><strong>Teach</strong> frameworks like Liberating Structures and Scrum</li>
-              <li><strong>Run</strong> cohort-based programs like the Better Career Cohort</li>
-              <li><strong>Guide</strong> strategic alignment and forward progress</li>
-              <li><strong>Write</strong> about modern ways of working, including my book <a href="https://a.co/d/8o94Q32" target="_blank" rel="noopener"><em>Who Killed Agile?</em></a></li>
-            </ul>
-
-            <h2>My Approach</h2>
-            <p>I focus on <strong>Practicality over theory</strong>—everything I teach works in real environments. I prioritize simplicity because clarity creates confidence, and I'm obsessed with <strong>Flow</strong>—reducing the delays and stalled decisions that burn people out.</p>
-
-            <h2>Navigating the Future with AI</h2>
-            <p>
-              Artificial intelligence isn’t just a trend—it's a new layer of how
-              work gets done. I’ve worked on knowledge-based systems since the late 90s, and the goal remains the same:
-              capture expertise and make complex work easier.
-            </p>
-            <p>
-              Today, I help teams integrate AI into their day-to-day flow in practical ways that reduce friction and free people to focus on meaningful, human-centered work.
-            </p>
-          </section>
+        <div class="creds">
+          <div class="cred"><span class="cred-dot"></span>Registered Scrum Trainer™</div>
+          <div class="cred"><span class="cred-dot"></span>Agile Coach</div>
+          <div class="cred"><span class="cred-dot"></span>Author of 3 Books</div>
+          <div class="cred"><span class="cred-dot"></span>South Florida</div>
         </div>
       </div>
-    </section>
-
-    <section class="about-cta">
-      <div class="container">
-        <h2>Fix your team's friction</h2>
-        <p>Download the guide to fixing team flow and preparing for the AI era.</p>
-        <a href="https://courses.betterwaysofworking.com/agile-team-flow-ai-readiness-blueprint" class="cta-button">Get the Free Blueprint</a>
+      <div class="about-content">
+        <div class="eyebrow">Dave Borzillo</div>
+        <div class="about-rule"></div>
+        <h1>Real ideas.<br>Simple principles.<br><span style="color:var(--teal)">Big impact.</span></h1>
+        <p class="lead">Dave helps people in knowledge work find better ways of working — whether that's how to run a workshop, build a product backlog, or lead a team that doesn't depend on one hero to hold it together.</p>
+        <p>The ideas aren't complicated. The hard part is doing them consistently. That's what Dave's coaching, training, and writing are all about: simple principles that actually stick.</p>
+        <div class="pull-quote">
+          <p>"I was waking up at 4am to answer calls no one else would answer. I thought that was dedication. It was actually a system failure — and I was the broken part."</p>
+        </div>
+        <p>That realization is what turned a decade of firefighting into a career of teaching others how to stop. Dave has been a Registered Scrum Trainer for over a decade, working with teams across industries to replace heroism with systems that work without a hero.</p>
+        <div class="about-ctas">
+          <a href="mailto:dave@betterwaysofworking.com" class="btn btn-teal">Book Dave to Speak or Coach →</a>
+          <a href="resources.html" class="btn btn-ghost">Explore Free Insights</a>
+        </div>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Better Ways of Working. All rights reserved. </p>
     </div>
-  </footer>
+  </div>
+</section>
+
+<!-- WHAT I DO -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="eyebrow-neutral">What Dave does</div>
+    <h2>Three ways to <span>work together.</span></h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>Speaking</h3>
+        <p>Keynotes and conference sessions on agile leadership, scaling without chaos, and the Hero Trap. Direct, practical, and built around ideas your audience can use the next day.</p>
+        <span class="service-tag">Conferences · Corporate</span>
+      </div>
+      <div class="service-card">
+        <h3>Coaching</h3>
+        <p>One-on-one and team coaching for leaders who are done with theory and ready to change how their organization actually works. From backlog bankruptcy to building self-correcting teams.</p>
+        <span class="service-tag">Leaders · Teams</span>
+      </div>
+      <div class="service-card">
+        <h3>Training</h3>
+        <p>Registered Scrum Trainer-level workshops on Scrum, agile fundamentals, and product ownership. Practical, engaging, and designed for people who have to go back to work on Monday.</p>
+        <span class="service-tag">Workshops · Certification</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow-neutral">The trilogy</div>
+    <h2>Three books. One through line.</h2>
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-card-spine"></div>
+        <div class="book-card-body">
+          <div class="book-num">Book 1</div>
+          <h3>United Agility</h3>
+          <p>The primer. What agile is, why uniting product and business agility matters, and how to close the gap between teams doing agile and an organization being agile.</p>
+        </div>
+      </div>
+      <div class="book-card">
+        <div class="book-card-spine"></div>
+        <div class="book-card-body">
+          <div class="book-num">Book 2</div>
+          <h3>Who Killed Agile?</h3>
+          <p>The autopsy. What goes wrong in agile transformations, why they fail, and who's really responsible when the rollout makes everything worse. Co-authored with Luiz "Q" Quintela.</p>
+        </div>
+      </div>
+      <div class="book-card" style="border-color: var(--teal);">
+        <div class="book-card-spine" style="background: var(--teal);"></div>
+        <div class="book-card-body">
+          <div class="book-num" style="color:var(--teal);">Book 3 — New</div>
+          <h3>Sanity at Scale</h3>
+          <p>The manual. How engineering leaders move from heroic firefighting to systemic excellence — and build organizations that deliver without burning out the people doing the work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="speaking-grid">
+      <div>
+        <div class="eyebrow" style="color:rgba(255,255,255,0.3);">Speaking topics</div>
+        <h2 style="color:#fff; margin-bottom:24px;">Built for leaders who are done with theory.</h2>
+        <div class="talk-list">
+          <div class="talk">
+            <h3>Stop Scaling the Chaos</h3>
+            <p>The Hero Trap, backlog bankruptcy, and the three moves that restore clarity in a scaling organization. Based on <em>Sanity at Scale</em>.</p>
+          </div>
+          <div class="talk">
+            <h3>Who Killed Agile?</h3>
+            <p>Why agile transformations fail — and what the organizations that get it right do differently. A forensic look at the most common causes of death.</p>
+          </div>
+          <div class="talk">
+            <h3>The Art of the Hard No</h3>
+            <p>How leaders protect their team's focus in a world of yes — the political capital ledger, the shield vs. the filter, and practical scripts for saying no without losing trust.</p>
+          </div>
+        </div>
+      </div>
+      <div class="speaking-cta-box">
+        <h3>Book Dave for your next event.</h3>
+        <p>Whether it's a conference keynote, a leadership offsite, or a corporate workshop — Dave brings real ideas your audience can act on immediately.</p>
+        <div class="contact-line">
+          <span class="contact-label">Email</span>
+          <a href="mailto:dave@betterwaysofworking.com">dave@betterwaysofworking.com</a>
+        </div>
+        <div class="contact-line">
+          <span class="contact-label">Phone</span>
+          <a href="tel:+17722474811">+1 (772) 247-4811</a>
+        </div>
+        <div class="contact-line">
+          <span class="contact-label">LinkedIn</span>
+          <a href="https://linkedin.com/in/daveborzillo" target="_blank" rel="noopener">linkedin.com/in/daveborzillo</a>
+        </div>
+        <div style="margin-top:24px;">
+          <a href="mailto:dave@betterwaysofworking.com" class="btn btn-teal">Send a Message →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 Better Ways of Working. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="resources.html">Insights</a>
+        <a href="index.html">The Book</a>
+        <a href="mailto:dave@betterwaysofworking.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
