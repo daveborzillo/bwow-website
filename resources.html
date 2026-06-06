@@ -370,11 +370,23 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
         <a href="about.html">About</a>
         <a href="resources.html">Insights</a>
         <a href="books.html">Books</a>
-        <a href="mailto:dave@betterwaysofworking.com">Contact</a>
+        Contact
       </div>
     </div>
   </div>
 </footer>
 
+
+<script>
+(function() {
+  var u = 'dave';
+  var d = 'betterwaysofworking.com';
+  var e = u + '@' + d;
+  document.querySelectorAll('.js-email').forEach(function(el) {
+    el.textContent = e;
+    if (el.tagName === 'A') { el.href = 'mailto:' + e; }
+  });
+})();
+</script>
 </body>
 </html>

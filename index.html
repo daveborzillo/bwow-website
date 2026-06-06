@@ -720,5 +720,17 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
   </div>
 </footer>
 
+
+<script>
+(function() {
+  var u = 'dave';
+  var d = 'betterwaysofworking.com';
+  var e = u + '@' + d;
+  document.querySelectorAll('.js-email').forEach(function(el) {
+    el.textContent = e;
+    if (el.tagName === 'A') { el.href = 'mailto:' + e; }
+  });
+})();
+</script>
 </body>
 </html>
