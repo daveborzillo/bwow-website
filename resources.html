@@ -22,17 +22,13 @@
   --border:    #e2e2de;
   --border-strong: #c8c8c2;
   --amazon:    #FF9900;
-  --youtube:   #FF0000;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--paper); color: var(--ink);
   font-family: 'Inter', -apple-system, sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+  line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
@@ -41,14 +37,12 @@ img { display: block; max-width: 100%; }
 /* NAV */
 header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(248,248,246,0.94);
-  backdrop-filter: blur(12px);
+  background: rgba(248,248,246,0.94); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 32px; height: 60px;
-  max-width: 1080px; margin: 0 auto;
+  padding: 0 32px; height: 60px; max-width: 1080px; margin: 0 auto;
 }
 nav { display: flex; gap: 28px; align-items: center; }
 nav a { font-size: 0.85rem; font-weight: 500; color: var(--muted); transition: color 0.15s; }
@@ -65,204 +59,92 @@ nav a:hover, nav a.active { color: var(--ink); }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 12px 24px; border-radius: 3px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700; font-size: 0.85rem;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.85rem;
   letter-spacing: 0.02em; cursor: pointer; transition: all 0.18s;
 }
 .btn-teal { background: var(--teal); color: #fff; }
 .btn-teal:hover { background: var(--teal-dark); transform: translateY(-1px); }
 .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border-strong); }
 .btn-ghost:hover { border-color: var(--ink); }
-.btn-yt { background: var(--youtube); color: #fff; }
+.btn-yt { background: #FF0000; color: #fff; }
 .btn-yt:hover { background: #cc0000; transform: translateY(-1px); }
 .btn-sub { background: var(--ink); color: #fff; }
 .btn-sub:hover { background: #1a1d24; transform: translateY(-1px); }
 
 /* EYEBROW */
-.eyebrow {
-  display: inline-block; font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--red); margin-bottom: 16px;
-}
-.eyebrow-neutral {
-  font-size: 0.7rem; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--subtle); margin-bottom: 14px;
-}
+.eyebrow { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+.eyebrow-neutral { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--subtle); margin-bottom: 14px; }
 
 /* PAGE HEADER */
-.page-header {
-  padding: 64px 0 56px;
-  border-bottom: 1px solid var(--border);
-}
-.page-header h1 {
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 900; letter-spacing: -0.04em;
-  line-height: 1.05; margin-bottom: 12px;
-}
+.page-header { padding: 64px 0 56px; border-bottom: 1px solid var(--border); }
+.page-header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 12px; }
 .page-header h1 span { color: var(--teal); }
-.page-header p {
-  font-size: 1.05rem; color: var(--muted);
-  max-width: 52ch; line-height: 1.7;
-}
 .header-rule { width: 36px; height: 3px; background: var(--teal); margin-bottom: 20px; }
+.page-header p { font-size: 1.05rem; color: var(--muted); max-width: 52ch; line-height: 1.7; }
 
-/* CHANNEL BANNERS */
+/* CHANNELS */
 .channels { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 36px; }
 .channel-card {
   display: flex; align-items: center; gap: 18px;
-  padding: 20px 24px;
-  border: 1px solid var(--border); border-radius: 3px;
+  padding: 20px 24px; border: 1px solid var(--border); border-radius: 3px;
   background: var(--white); transition: border-color 0.18s, box-shadow 0.18s;
 }
 .channel-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-.channel-icon {
-  width: 44px; height: 44px; border-radius: 3px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; font-size: 1.2rem;
-}
-.channel-icon-yt { background: #fff0f0; }
-.channel-icon-sub { background: #f0f4f3; }
+.channel-icon { width: 44px; height: 44px; border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .channel-info { flex: 1; }
 .channel-name { font-size: 0.9rem; font-weight: 800; margin-bottom: 2px; }
 .channel-desc { font-size: 0.8rem; color: var(--muted); }
-.channel-link {
-  font-size: 0.78rem; font-weight: 700;
-  color: var(--teal); white-space: nowrap;
-}
+.channel-link { font-size: 0.78rem; font-weight: 700; color: var(--teal); white-space: nowrap; }
 
-/* SECTION */
+/* SECTIONS */
 .section { padding: 72px 0; }
 .section-alt { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .section-dark { background: var(--ink); }
-.section-header {
-  display: flex; align-items: flex-end; justify-content: space-between;
-  margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
-}
-.section-header h2 {
-  font-size: clamp(22px, 2.8vw, 30px);
-  font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
-}
+.section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
+.section-header h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
 
 /* VIDEO GRID */
-.video-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
-}
-.video-card {
-  background: var(--white); border: 1px solid var(--border);
-  border-radius: 3px; overflow: hidden;
-  transition: border-color 0.18s, box-shadow 0.18s;
-}
+.video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.video-card { background: var(--white); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; transition: border-color 0.18s, box-shadow 0.18s; }
 .video-card:hover { border-color: var(--border-strong); box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
-.video-thumb {
-  aspect-ratio: 16/9; background: var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.video-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.video-thumb-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  background: linear-gradient(135deg, #1a1d24 0%, #0a0c10 100%);
-  position: relative;
-}
-.vtp-inner {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 10px;
-}
-.vtp-label {
-  font-size: 0.65rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.3);
-}
-.play-btn {
-  width: 48px; height: 48px; background: rgba(255,0,0,0.7);
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  border: 2px solid rgba(255,255,255,0.2);
-  transition: background 0.18s, transform 0.18s;
-}
+.video-thumb { aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1d24 0%, #0a0c10 100%); position: relative; }
+.vtp-inner { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.vtp-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); }
+.play-btn { width: 48px; height: 48px; background: rgba(255,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(255,255,255,0.2); transition: background 0.18s, transform 0.18s; }
 .video-card:hover .play-btn { background: rgba(255,0,0,0.9); transform: scale(1.08); }
 .play-btn svg { margin-left: 3px; }
 .video-body { padding: 16px; }
-.video-tag {
-  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--teal); margin-bottom: 6px;
-}
+.video-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 6px; }
 .video-card h3 { font-size: 0.875rem; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
 .video-card p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
 
-/* SUBSTACK GRID */
-.post-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
-}
-.post-card {
-  padding: 24px 22px;
-  background: var(--paper); border: 1px solid var(--border);
-  border-radius: 3px; border-left: 3px solid var(--teal);
-  transition: border-color 0.18s, box-shadow 0.18s;
-}
+/* POST GRID */
+.post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.post-card { padding: 24px 22px; background: var(--paper); border: 1px solid var(--border); border-radius: 3px; border-left: 3px solid var(--teal); transition: box-shadow 0.18s; }
 .post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
-.post-tag {
-  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.1em; color: var(--teal); margin-bottom: 8px;
-}
+.post-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 8px; }
 .post-card h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
 .post-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
 
-/* NEWSLETTER */
-.newsletter-box {
-  background: var(--teal-muted);
-  border: 1px solid #c8e8e4; border-radius: 3px;
-  padding: 40px; text-align: center;
-}
-.newsletter-box h2 {
-  font-size: clamp(22px, 2.8vw, 30px);
-  font-weight: 800; letter-spacing: -0.03em;
-  margin-bottom: 10px;
-}
-.newsletter-box p {
-  font-size: 0.975rem; color: var(--muted);
-  max-width: 48ch; margin: 0 auto 24px; line-height: 1.7;
-}
-.newsletter-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-
-
 /* PODCAST */
 .podcast-section { padding: 72px 0; background: var(--ink); }
-.podcast-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
-.podcast-header h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; color: #fff; }
-.podcast-platforms { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
 .platform-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 18px; border-radius: 3px;
-  font-size: 0.82rem; font-weight: 700;
-  transition: all 0.18s; border: 1px solid rgba(255,255,255,0.15);
-  color: #fff;
+  padding: 12px 22px; border-radius: 3px; font-size: 0.875rem; font-weight: 700;
+  transition: all 0.18s; border: 1px solid rgba(255,255,255,0.15); color: #fff;
 }
 .platform-btn:hover { background: rgba(255,255,255,0.08); }
 .platform-apple { background: rgba(255,255,255,0.06); }
 .platform-spotify { background: rgba(30,215,96,0.12); border-color: rgba(30,215,96,0.3); }
-.episodes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-.episode-card {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 18px 20px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 3px;
-  transition: background 0.18s;
-}
-.episode-card:hover { background: rgba(255,255,255,0.07); }
-.episode-num {
-  flex-shrink: 0; width: 36px; height: 36px;
-  background: rgba(26,122,110,0.3); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.7rem; font-weight: 800; color: #6ee7b7;
-}
-.episode-info { flex: 1; }
-.episode-date { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
-.episode-card h3 { font-size: 0.875rem; font-weight: 700; color: #fff; margin-bottom: 4px; line-height: 1.3; }
-.episode-card p { font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 1.5; }
-@media (max-width: 880px) { .episodes-grid { grid-template-columns: 1fr; } }
+.podcast-platforms { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* NEWSLETTER */
+.newsletter-box { background: var(--teal-muted); border: 1px solid #c8e8e4; border-radius: 3px; padding: 40px; text-align: center; }
+.newsletter-box h2 { font-size: clamp(22px, 2.8vw, 30px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 10px; }
+.newsletter-box p { font-size: 0.975rem; color: var(--muted); max-width: 48ch; margin: 0 auto 24px; line-height: 1.7; }
+.newsletter-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-free { background: var(--teal-muted); color: var(--teal); border: 1.5px solid #c8e8e4; }
+.btn-free:hover { background: #d4eeeb; }
 
 /* FOOTER */
 footer { background: var(--paper); border-top: 1px solid var(--border); padding: 28px 0; }
@@ -275,7 +157,6 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 /* RESPONSIVE */
 @media (max-width: 880px) {
   .channels { grid-template-columns: 1fr; }
-  .video-grid { grid-template-columns: repeat(2, 1fr); }
   .video-grid { grid-template-columns: repeat(2, 1fr); }
   .post-grid { grid-template-columns: 1fr; }
   .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 32px; gap: 10px; }
@@ -290,6 +171,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 </head>
 <body>
 
+<!-- NAV -->
 <header>
   <div class="nav-inner">
     <a href="index.html" aria-label="Better Ways of Working">
@@ -298,7 +180,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
     <nav>
       <a href="about.html">About</a>
       <a href="resources.html" class="active">Insights</a>
-      <a href="index.html#inside">The Book</a>
+      <a href="books.html">Books</a>
       <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="nav-cta">Get Notified →</a>
     </nav>
   </div>
@@ -315,17 +197,17 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
     <p>No fluff. No framework worship. Just practical thinking on agile leadership, scaling teams, and building organizations that don't need a hero to hold them together.</p>
     <div class="channels">
       <a href="https://bwow.substack.com" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon channel-icon-sub">
+        <div class="channel-icon" style="background:#f0f4f3;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="3" rx="1" fill="#1a7a6e"/><rect x="3" y="9" width="18" height="2" rx="1" fill="#1a7a6e" opacity="0.5"/><path d="M3 14h18v6.5L12 17l-9 3.5V14z" fill="#1a7a6e"/></svg>
         </div>
         <div class="channel-info">
           <div class="channel-name">Better Ways of Working</div>
-          <div class="channel-desc">Substack · Agile insights, coaching observations, and launch updates</div>
+          <div class="channel-desc">Substack · Agile insights and coaching observations</div>
         </div>
         <div class="channel-link">Subscribe →</div>
       </a>
       <a href="https://www.youtube.com/@betterwaysofworking" target="_blank" rel="noopener" class="channel-card">
-        <div class="channel-icon channel-icon-yt">
+        <div class="channel-icon" style="background:#fff0f0;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" fill="#FF0000"/><path d="M10 9l5 3-5 3V9z" fill="white"/></svg>
         </div>
         <div class="channel-info">
@@ -334,15 +216,13 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
         </div>
         <div class="channel-link">Watch →</div>
       </a>
-    </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:12px;">
       <a href="https://podcasts.apple.com/us/podcast/better-ways-of-working/id1777710901" target="_blank" rel="noopener" class="channel-card">
         <div class="channel-icon" style="background:#f5f0ff;">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="4" fill="#9B59B6" opacity="0.3"/><circle cx="12" cy="10" r="3" fill="#9B59B6" opacity="0.7"/><path d="M9 17c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="#9B59B6" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
         <div class="channel-info">
           <div class="channel-name">Apple Podcasts</div>
-          <div class="channel-desc">13 episodes · Bi-weekly · Agile, leadership, knowledge work</div>
+          <div class="channel-desc">Podcast · Better Ways of Working</div>
         </div>
         <div class="channel-link">Listen →</div>
       </a>
@@ -352,7 +232,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
         </div>
         <div class="channel-info">
           <div class="channel-name">Spotify</div>
-          <div class="channel-desc">Stream all episodes · Better Ways of Working podcast</div>
+          <div class="channel-desc">Podcast · Better Ways of Working</div>
         </div>
         <div class="channel-link">Listen →</div>
       </a>
@@ -361,7 +241,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 </section>
 
 <!-- VIDEOS -->
-<section class="section">
+<section class="section" id="videos">
   <div class="container">
     <div class="section-header">
       <div>
@@ -375,29 +255,15 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
     </div>
     <div class="video-grid">
       <a href="https://www.youtube.com/watch?v=6iu1aIck89c" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <div class="video-thumb-placeholder">
-            <div class="vtp-inner">
-              <div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div>
-              <div class="vtp-label">Scrum</div>
-            </div>
-          </div>
-        </div>
+        <div class="video-thumb"><div class="vtp-inner"><div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div><div class="vtp-label">Scrum</div></div></div>
         <div class="video-body">
           <div class="video-tag">Scrum</div>
           <h3>Sprint Planning &amp; Backlog Refinement</h3>
-          <p>The importance of proper backlog refinement before sprint planning — and why skipping it costs you every time.</p>
+          <p>Why proper backlog refinement before sprint planning matters — and what happens when you skip it.</p>
         </div>
       </a>
       <a href="https://www.youtube.com/watch?v=Jv5o_Jt_ZGY" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <div class="video-thumb-placeholder">
-            <div class="vtp-inner">
-              <div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div>
-              <div class="vtp-label">Product Backlog</div>
-            </div>
-          </div>
-        </div>
+        <div class="video-thumb"><div class="vtp-inner"><div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div><div class="vtp-label">Backlog</div></div></div>
         <div class="video-body">
           <div class="video-tag">Product Backlog</div>
           <h3>Setting Up Backlog Items: Beyond User Stories</h3>
@@ -405,29 +271,15 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
         </div>
       </a>
       <a href="https://www.youtube.com/watch?v=Ev8s9MnLn20" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <div class="video-thumb-placeholder">
-            <div class="vtp-inner">
-              <div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div>
-              <div class="vtp-label">Leadership</div>
-            </div>
-          </div>
-        </div>
+        <div class="video-thumb"><div class="vtp-inner"><div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div><div class="vtp-label">Leadership</div></div></div>
         <div class="video-body">
           <div class="video-tag">Leadership</div>
           <h3>Navigating Disruption: Insights from Industry Leaders</h3>
-          <p>Dave Borzillo and Dave Stagney on disruption, innovation, and transformation — and what leaders need to do differently.</p>
+          <p>Dave Borzillo and Dave Stagney on disruption, innovation, and what leaders need to do differently.</p>
         </div>
       </a>
       <a href="https://www.youtube.com/watch?v=h38ONC4b_-8" target="_blank" rel="noopener" class="video-card">
-        <div class="video-thumb">
-          <div class="video-thumb-placeholder">
-            <div class="vtp-inner">
-              <div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div>
-              <div class="vtp-label">Agile</div>
-            </div>
-          </div>
-        </div>
+        <div class="video-thumb"><div class="vtp-inner"><div class="play-btn"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="white"/></svg></div><div class="vtp-label">Agile</div></div></div>
         <div class="video-body">
           <div class="video-tag">Agile</div>
           <h3>Are All Agile Teams Scrum Teams?</h3>
@@ -439,7 +291,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 </section>
 
 <!-- SUBSTACK -->
-<section class="section section-alt">
+<section class="section section-alt" id="articles">
   <div class="container">
     <div class="section-header">
       <div>
@@ -467,79 +319,26 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
       <a href="https://bwow.substack.com/p/teams-and-communication" target="_blank" rel="noopener" class="post-card">
         <div class="post-tag">Teams</div>
         <h3>Teams &amp; Communication</h3>
-        <p>Effective communication in remote and hybrid teams — navigating channels, establishing meeting norms, and ensuring accountability without micromanaging.</p>
+        <p>Effective communication in remote and hybrid teams — channels, meeting norms, and ensuring accountability without micromanaging.</p>
       </a>
     </div>
   </div>
 </section>
 
 <!-- PODCAST -->
-<section class="podcast-section">
+<section class="podcast-section" id="podcast">
   <div class="container">
-    <div class="podcast-header">
-      <div>
-        <div class="eyebrow" style="color:rgba(255,255,255,0.3);">The Podcast</div>
-        <h2>Better Ways of Working</h2>
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="https://podcasts.apple.com/us/podcast/better-ways-of-working/id1777710901" target="_blank" rel="noopener" class="platform-btn platform-apple">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="4" fill="white" opacity="0.2"/><path d="M12 6a3 3 0 0 1 3 3v2a3 3 0 0 1-6 0V9a3 3 0 0 1 3-3z" fill="white" opacity="0.6"/><path d="M8 17h8" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/></svg>
-          Apple Podcasts
-        </a>
-        <a href="https://open.spotify.com/show/4W8ZPIUukG3UEw7O1WsR9g" target="_blank" rel="noopener" class="platform-btn platform-spotify">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#1ED760" opacity="0.2"/><path d="M7 10c2.5-1 5.5-1 8 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 13c2-0.8 4.5-0.8 7 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 16c1.5-0.6 3.5-0.6 5.5 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/></svg>
-          Spotify
-        </a>
-      </div>
-    </div>
-    <div class="episodes-grid">
-      <a href="https://bwow.substack.com/p/better-meetings" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">May 22, 2025</div>
-          <h3>Better Meetings</h3>
-          <p>A guide to more effective meetings — from facilitation to follow-through. With Chris from Badass Agile.</p>
-        </div>
+    <div class="eyebrow" style="color:rgba(255,255,255,0.3);">The Podcast</div>
+    <h2 style="color:#fff; font-size:clamp(24px,3vw,36px); font-weight:800; letter-spacing:-0.03em; margin-bottom:8px;">Better Ways of Working</h2>
+    <p style="color:rgba(255,255,255,0.5); font-size:1rem; max-width:52ch; margin-bottom:32px; line-height:1.7;">Real conversations on agile leadership, knowledge work, and building teams that don't need a hero to hold them together. Available wherever you listen.</p>
+    <div class="podcast-platforms">
+      <a href="https://podcasts.apple.com/us/podcast/better-ways-of-working/id1777710901" target="_blank" rel="noopener" class="platform-btn platform-apple">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="4" fill="white" opacity="0.3"/><circle cx="12" cy="10" r="3" fill="white" opacity="0.7"/><path d="M9 17c0-1.66 1.34-3 3-3s3 1.34 3 3" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Listen on Apple Podcasts
       </a>
-      <a href="https://bwow.substack.com/p/agile-a-customer-centric-approach" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">May 4, 2025</div>
-          <h3>Agile: A Customer-Centric Approach</h3>
-          <p>Agile is meant for people. A conversation on customer focus, mindset, and what real-world agile actually looks like.</p>
-        </div>
-      </a>
-      <a href="https://bwow.substack.com/p/breaking-the-rules" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">Apr 22, 2025</div>
-          <h3>Breaking the Rules: A New Perspective on Agile</h3>
-          <p>Following principles over rules — adaptability, creativity, and why the best agile teams know when to break the framework.</p>
-        </div>
-      </a>
-      <a href="https://bwow.substack.com/p/teams-and-communication" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">Feb 24, 2025</div>
-          <h3>Teams &amp; Communication</h3>
-          <p>Communication strategies for remote and hybrid teams — channels, meeting norms, managing dominant personalities, and accountability.</p>
-        </div>
-      </a>
-      <a href="https://bwow.substack.com/p/job-market-for-agile-practitioners" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">Dec 23, 2024</div>
-          <h3>Job Market for Agile Practitioners</h3>
-          <p>The agile job market is shifting. What practitioners need to do differently — and how to build independent value in a tighter space.</p>
-        </div>
-      </a>
-      <a href="https://bwow.substack.com/p/ai-and-rapid-prototypes" target="_blank" rel="noopener" class="episode-card">
-        <div class="episode-num">▶</div>
-        <div class="episode-info">
-          <div class="episode-date">Nov 25, 2024</div>
-          <h3>AI &amp; Rapid Prototypes</h3>
-          <p>From idea to testable prototype in 10 minutes. How AI tools are changing the way we build — and what that means for agile teams.</p>
-        </div>
+      <a href="https://open.spotify.com/show/4W8ZPIUukG3UEw7O1WsR9g" target="_blank" rel="noopener" class="platform-btn platform-spotify">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#1ED760" opacity="0.3"/><path d="M7 10c2.5-1 5.5-1 8 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 13c2-.8 4.5-.8 7 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/><path d="M8.5 16c1.5-.6 3.5-.6 5.5 0" stroke="#1ED760" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Listen on Spotify
       </a>
     </div>
   </div>
@@ -562,6 +361,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 
 </main>
 
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
@@ -569,7 +369,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
       <div class="footer-links">
         <a href="about.html">About</a>
         <a href="resources.html">Insights</a>
-        <a href="index.html">The Book</a>
+        <a href="books.html">Books</a>
         <a href="mailto:dave@betterwaysofworking.com">Contact</a>
       </div>
     </div>
