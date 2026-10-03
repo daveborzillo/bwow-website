@@ -126,6 +126,14 @@ background: var(--white); transition: border-color 0.18s, box-shadow 0.18s;
 .post-tag { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 8px; }
 .post-card h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
 .post-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+/* GUEST APPEARANCES */
+.guest-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.guest-card { display: flex; flex-direction: column; padding: 24px 22px; background: var(--paper); border: 1px solid var(--border); border-radius: 3px; border-top: 3px solid var(--ink); transition: border-color 0.18s, box-shadow 0.18s; }
+.guest-card:hover { border-color: var(--border-strong); border-top-color: var(--teal); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.guest-show { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--subtle); margin-bottom: 8px; }
+.guest-card h3 { font-size: 0.95rem; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
+.guest-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 14px; }
+.guest-link { font-size: 0.78rem; font-weight: 700; color: var(--teal); }
 /* PODCAST */
 .podcast-section { padding: 72px 0; background: var(--ink); }
 .platform-btn {
@@ -156,6 +164,7 @@ footer { background: var(--paper); border-top: 1px solid var(--border); padding:
 .channels { grid-template-columns: 1fr; }
 .video-grid { grid-template-columns: repeat(2, 1fr); }
 .post-grid { grid-template-columns: 1fr; }
+.guest-grid { grid-template-columns: 1fr; }
 .nav-inner { flex-wrap: wrap; height: auto; padding: 12px 32px; gap: 10px; }
 nav { flex-wrap: wrap; gap: 16px; }
 .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -230,6 +239,44 @@ nav { flex-wrap: wrap; gap: 16px; }
 <div class="channel-desc">Podcast · Better Ways of Working</div>
 </div>
 <div class="channel-link">Listen →</div>
+</a>
+</div>
+</div>
+</section>
+
+<!-- GUEST APPEARANCES -->
+<section class="section section-alt" id="guest-appearances">
+<div class="container">
+<div class="section-header">
+<div>
+<div class="eyebrow-neutral">On other shows</div>
+<h2>Guest appearances</h2>
+</div>
+</div>
+<div class="guest-grid">
+<a href="https://podcasts.apple.com/us/podcast/we-dont-need-another-hero-with-dave-borzillo/id1121124593?i=1000792886519" target="_blank" rel="noopener" class="guest-card">
+<div class="guest-show">DrunkenPM Radio</div>
+<h3>We Don't Need Another Hero</h3>
+<p>Ideas from <em>Sanity at Scale</em>: removing waste, visualizing work, and building teams that don't run on heroics.</p>
+<div class="guest-link">Listen →</div>
+</a>
+<a href="https://www.youtube.com/watch?v=pWAlxe_qNrA" target="_blank" rel="noopener" class="guest-card">
+<div class="guest-show">Develpreneur</div>
+<h3>Hero Culture Risks: Why AI Is Exposing the Cracks in Software Delivery</h3>
+<p>What faster, AI-assisted delivery reveals about teams that depend on heroes to ship.</p>
+<div class="guest-link">Watch →</div>
+</a>
+<a href="https://badassagile.com/2026/08/24/sanity-at-scale/" target="_blank" rel="noopener" class="guest-card">
+<div class="guest-show">Badass Agile</div>
+<h3>How To Find Sanity At Scale</h3>
+<p>Moving engineering leaders from heroic firefighting to systemic excellence.</p>
+<div class="guest-link">Listen →</div>
+</a>
+<a href="https://badassagile.com/2025/05/28/better-meetings-with-dave-borzillo/" target="_blank" rel="noopener" class="guest-card">
+<div class="guest-show">Badass Agile</div>
+<h3>Better Meetings</h3>
+<p>The Frame, Flow and Follow-Through approach to meetings that end in decisions.</p>
+<div class="guest-link">Listen →</div>
 </a>
 </div>
 </div>
